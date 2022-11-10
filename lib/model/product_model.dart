@@ -213,7 +213,7 @@ class _ProductModelState extends State<ProductModel> {
                 )),
             Positioned(
                 bottom: 16,
-                right: 35,
+                right: 25,
                 child: SizedBox(
                   height: 20,
                   child: IconButton(
