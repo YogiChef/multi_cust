@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hub/providers/id_provider.dart';
@@ -23,7 +22,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   late Future<String> documentId;
   String? docId;
-  
+
   // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   setUserId() {
     context.read<IdProvider>().clearCustId();
@@ -59,7 +58,6 @@ class _CartPageState extends State<CartPage> {
     return Material(
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.grey.shade100,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,

@@ -20,7 +20,6 @@ class _WishlistPageState extends State<WishlistPage> {
     return Material(
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.grey.shade100,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
@@ -74,7 +73,7 @@ class EmptyWishCart extends StatelessWidget {
             'Your Wishlist\n\n Is Empty !',
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: Colors.deepOrange,
+                color: Colors.blueGrey,
                 fontSize: 36,
                 fontWeight: FontWeight.bold),
           ),
