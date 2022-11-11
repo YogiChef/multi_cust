@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../widgets/appbar_widgets.dart';

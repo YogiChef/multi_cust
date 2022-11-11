@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 9,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: Colors.grey.shade100,
         appBar: AppBar(
           title: const FakeSearch(),
           backgroundColor: Colors.white,

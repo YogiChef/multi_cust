@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hub/providers/id_provider.dart';
 import 'package:hub/widgets/alert_dialog.dart';
@@ -19,13 +21,37 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  late String docId;
+  late Future<String> documentId;
+  String? docId;
+  
+  // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  setUserId() {
+    context.read<IdProvider>().clearCustId();
+  }
+
   @override
   void initState() {
+    // documentId = _prefs.then((SharedPreferences prefs) {
+    //   return prefs.getString('customerid') ?? '';
+    // }).then((value) {
+    //   setState(() {
+    //     docId = value;
+    //   });
+    //   print(documentId);
+    //   print(docId);
+    //   return docId!;
+    // });
+    documentId = context.read<IdProvider>().getDocumentId();
     docId = context.read<IdProvider>().getData;
-
     super.initState();
   }
+  // late String docId;
+  // @override
+  // void initState() {
+  //   docId = context.read<IdProvider>().getData;
+
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +197,29 @@ class EmptyCart extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void logInDialog(context) {
+    showCupertinoDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+              title: const Text('please log in'),
+              content: const Text('you should be logged in to take an action'),
+              actions: <CupertinoDialogAction>[
+                CupertinoDialogAction(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: const Text('Log in'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ));
   }
 }
 

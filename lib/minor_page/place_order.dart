@@ -10,7 +10,7 @@ import 'package:hub/widgets/widget_button.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/cart_provider.dart';
-import '../servixe/globas_service.dart';
+import '../service/globas_service.dart';
 
 class PlaceOrderPage extends StatefulWidget {
   final dynamic items;
@@ -199,7 +199,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                             height: 89,
                                             width: 89,
                                             child: Image.network(
-                                              order.imagesUrl.first,
+                                              order.imagesUrl,
                                               fit: BoxFit.cover,
                                             ),
                                           ),

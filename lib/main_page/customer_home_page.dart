@@ -26,6 +26,13 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
         // documentId: auth.currentUser!.uid,
         ),
   ];
+
+  @override
+  void initState() {
+    context.read<Cart>().loadCartItemProvider();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

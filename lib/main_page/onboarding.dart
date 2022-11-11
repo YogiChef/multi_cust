@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/minor_page/hot_deals.dart';
 import 'package:hub/providers/id_provider.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:provider/provider.dart';
 
 import '../gallery/shoes_gallery.dart';

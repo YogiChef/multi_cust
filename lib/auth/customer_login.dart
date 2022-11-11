@@ -10,7 +10,7 @@ import 'package:hub/main_page/welcom.dart';
 import 'package:hub/providers/auth_repo.dart';
 import 'package:hub/providers/id_provider.dart';
 import 'package:provider/provider.dart';
-import '../servixe/globas_service.dart';
+import '../service/globas_service.dart';
 import '../widgets/auth_widget.dart';
 import '../widgets/snackbar.dart';
 import '../widgets/widget_button.dart';

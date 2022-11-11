@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:hub/widgets/widget_button.dart';
 import 'package:image_picker/image_picker.dart';

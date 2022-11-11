@@ -7,7 +7,7 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 import '../model/product_model.dart';
-import '../servixe/globas_service.dart';
+import '../service/globas_service.dart';
 import '../widgets/appbar_widgets.dart';
 
 class VisitStore extends StatefulWidget {

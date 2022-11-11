@@ -32,7 +32,7 @@ class CartModel extends StatelessWidget {
                 height: 90,
                 width: 110,
                 child: Image.network(
-                  product.imagesUrl.first,
+                  product.imagesUrl,
                   fit: BoxFit.cover,
                 ),
               ),

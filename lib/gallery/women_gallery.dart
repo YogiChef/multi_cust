@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
@@ -38,6 +38,7 @@ class _WomenGalleryState extends State<WomenGallery> {
         }
         if (snapshot.data!.docs.isEmpty) {
           return Center(
+            
             child: Text(
               'This category \n\n has no items yet !',
               textAlign: TextAlign.center,

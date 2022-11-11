@@ -13,7 +13,7 @@ import 'package:hub/providers/id_provider.dart';
 import 'package:hub/widgets/widget_button.dart';
 import 'package:provider/provider.dart';
 import '../customers/wishlist.dart';
-import '../servixe/globas_service.dart';
+import '../service/globas_service.dart';
 import '../widgets/alert_dialog.dart';
 import '../widgets/appbar_widgets.dart';
 
@@ -29,8 +29,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   late Future<String> documentId;
-  late String docId;
+  String? docId;
   CollectionReference customers = store.collection('customers');
   // CollectionReference anonymous = store.collection('anonymous');
 
@@ -40,6 +42,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
+    // documentId = _prefs.then((SharedPreferences prefs) {
+    //   return prefs.getString('customerid') ?? '';
+    // }).then((value) {
+    //   setState(() {
+    //     docId = value;
+    //   });
+    //   print(documentId);
+    //   print(docId);
+    //   return docId!;
+    // });
     documentId = context.read<IdProvider>().getDocumentId();
     docId = context.read<IdProvider>().getData;
     super.initState();

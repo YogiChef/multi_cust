@@ -4,7 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hub/minor_page/product_detail.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/providers/product_class.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
@@ -23,6 +24,8 @@ class ProductModel extends StatefulWidget {
 }
 
 class _ProductModelState extends State<ProductModel> {
+  late List<dynamic> imgList = widget.product['proimage'];
+
   String? documentId;
   @override
   void initState() {
@@ -85,7 +88,7 @@ class _ProductModelState extends State<ProductModel> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
                     child: Column(
                       children: [
                         Text(
@@ -176,81 +179,95 @@ class _ProductModelState extends State<ProductModel> {
                     color: Colors.transparent,
                   ),
             Positioned(
-                bottom: 16,
-                right: 0,
-                child: SizedBox(
-                  height: 20,
-                  child: IconButton(
-                      onPressed: () {
-                        existingItemWishlist != null
-                            ? context
-                                .read<Wish>()
-                                .removeThis(widget.product['proid'])
-                            : context.read<Wish>().addWishItem(
-                                  widget.product['proname'],
-                                  onSale != 0
-                                      ? ((1 - (onSale / 100)) *
-                                          widget.product['price'])
-                                      : widget.product['price'],
-                                  1,
-                                  widget.product['instock'],
-                                  widget.product['proimage'],
-                                  widget.product['proid'],
-                                  widget.product['sid'],
-                                );
-                      },
-                      icon: existingItemWishlist != null
-                          ? const Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                              size: 18,
-                            )
-                          : const Icon(
-                              Icons.favorite_outline,
-                              color: Colors.grey,
-                              size: 18,
-                            )),
-                )),
-            Positioned(
-                bottom: 16,
-                right: 25,
-                child: SizedBox(
-                  height: 20,
-                  child: IconButton(
-                      onPressed: documentId != null
-                          ? () {
-                              existingItemCart != null
-                                  ? context
-                                      .read<Cart>()
-                                      .removeThis(widget.product['proid'])
-                                  : context.read<Cart>().addItem(
-                                        widget.product['proname'],
-                                        onSale != 0
-                                            ? ((1 - (onSale / 100)) *
-                                                widget.product['price'])
-                                            : widget.product['price'],
-                                        1,
-                                        widget.product['instock'],
-                                        widget.product['proimage'],
-                                        widget.product['proid'],
-                                        widget.product['sid'],
-                                      );
-                            }
-                          : () {
-                              LoginDialog.showLoginDialog(context);
-                            },
-                      icon: existingItemCart != null
-                          ? const Icon(
-                              Icons.delete_forever,
-                              color: Colors.red,
-                              size: 18,
-                            )
-                          : const Icon(
-                              Icons.shopping_bag_outlined,
-                              color: Colors.grey,
-                              size: 18,
-                            )),
-                )),
+              top: 0,
+              right: 0,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(5)),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      height: 30,
+                      width: 35,
+                      child: IconButton(
+                          onPressed: () {
+                            existingItemWishlist != null
+                                ? context
+                                    .read<Wish>()
+                                    .removeThis(widget.product['proid'])
+                                : context.read<Wish>().addWishItem(
+                                      widget.product['proname'],
+                                      onSale != 0
+                                          ? ((1 - (onSale / 100)) *
+                                              widget.product['price'])
+                                          : widget.product['price'],
+                                      1,
+                                      widget.product['instock'],
+                                      imgList.first,
+                                      widget.product['proid'],
+                                      widget.product['sid'],
+                                    );
+                          },
+                          icon: existingItemWishlist != null
+                              ? const Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                  size: 18,
+                                )
+                              : const Icon(
+                                  Icons.favorite_outline,
+                                  color: Colors.white,
+                                  size: 18,
+                                )),
+                    ),
+                    SizedBox(
+                      height: 30,
+                      width: 35,
+                      child: IconButton(
+                          onPressed: documentId == null
+                              ? () {
+                                  LoginDialog.showLoginDialog(context);
+                                }
+                              : () {
+                                  existingItemCart != null
+                                      ? context
+                                          .read<Cart>()
+                                          .removeThis(widget.product['proid'])
+                                      : context.read<Cart>().addItem(
+                                            Product(
+                                              documentId:
+                                                  widget.product['proid'],
+                                              name: widget.product['proname'],
+                                              price: onSale != 0
+                                                  ? ((1 - (onSale / 100)) *
+                                                      widget.product['price'])
+                                                  : widget.product['price'],
+                                              qty: 1,
+                                              qntty: widget.product['instock'],
+                                              imagesUrl: imgList.first,
+                                              suppId: widget.product['sid'],
+                                            ),
+                                          );
+                                },
+                          icon: existingItemCart != null
+                              ? const Icon(
+                                  Icons.delete_forever,
+                                  color: Colors.red,
+                                  size: 18,
+                                )
+                              : const Icon(
+                                  Icons.shopping_bag_outlined,
+                                  color: Colors.white,
+                                  size: 18,
+                                )),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

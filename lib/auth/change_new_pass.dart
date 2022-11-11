@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/providers/auth_repo.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
 import 'package:hub/widgets/auth_widget.dart';
 import 'package:hub/widgets/snackbar.dart';

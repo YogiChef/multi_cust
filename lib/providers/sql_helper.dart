@@ -6,6 +6,7 @@ import 'package:path/path.dart' as p;
 
 class SQHelper {
   static Database? _database;
+
   static get getDatabase async {
     if (_database != null) return _database;
     _database = await initDatabase();
@@ -13,7 +14,7 @@ class SQHelper {
   }
 
   static Future<Database> initDatabase() async {
-    String path = p.join(await getDatabasesPath(), 'shipping_database.db');
+    String path = p.join(await getDatabasesPath(), 'shopping_data.db');
     return await openDatabase(
       path,
       version: 1,
@@ -47,87 +48,31 @@ class SQHelper {
 
   static Future insertItem(Product product) async {
     Database db = await getDatabase;
-    // await db.insert('cart_items', product.toMap());
-    print(await db.query('cart_items'));
-  }
-
-  static Future insertTodo(Todo todo) async {
-    Database db = await getDatabase;
-    await db.insert('todos', todo.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-    print(await db.query('todos'));
-  }
-
-  static Future insertNoteRaw(title, content) async {
-    Database db = await getDatabase;
-    await db.rawInsert(
-        'INSERT INTO notes(title, content,) VALUES(?, ?)', [title, content]);
-    print(await db.rawQuery('SELECT * FROM notes'));
+    db.insert('cart_items', product.toMap());
+    print(db.query('cart_items'));
   }
 
   static Future<List<Map>> loadItems() async {
     Database db = await getDatabase;
-    return await db.query('cart_items');
+    return db.query('cart_items');
   }
 
-  static Future<List<Map>> loadTodo() async {
+  static Future updateItem(Product newproduct, String status) async {
     Database db = await getDatabase;
-    List<Map> maps = await db.query('todos');
-    return List.generate(maps.length, (index) {
-      return Todo(
-        id: maps[index]['id'],
-        title: maps[index]['title'],
-        value: maps[index]['value'],
-      ).toMap();
-    });
+    await db.rawUpdate('UPDATE cart_items SET qty = ?  WHERE documentId = ?', [
+      status == 'increment' ? newproduct.qty + 1 : newproduct.qty - 1,
+      newproduct.documentId
+    ]);
   }
 
-  static Future updateNote(Note newNote) async {
+  static Future deleteItem(String id) async {
     Database db = await getDatabase;
-    await db.update('notes', newNote.toMap(),
-        where: 'id=?', whereArgs: [newNote.id]);
+    db.delete('cart_items', where: 'documentId = ?', whereArgs: [id]);
   }
 
-  static Future updateNoteTodoCheck(int id, int currentValue) async {
+  static Future daleteAllItem() async {
     Database db = await getDatabase;
-    await db.rawUpdate('UPDATE todos SET value = ? WHERE id = ?',
-        [currentValue == 0 ? 1 : 0, id]);
-  }
-
-  static Future updateNoteRaw(Note newNote) async {
-    Database db = await getDatabase;
-    await db.rawUpdate('UPDATE notes SET title = ?, content = ? WHERE id = ?',
-        [newNote.title, newNote.content, newNote.id]);
-  }
-
-  static Future daleteNote(int id) async {
-    Database db = await getDatabase;
-    await db.delete('notes', where: 'id = ?', whereArgs: [id]);
-  }
-
-  static Future daleteNoteRaw(int id) async {
-    Database db = await getDatabase;
-    await db.rawDelete('DELETE FROM notes WHERE id = ?', [id]);
-  }
-
-  static Future daleteAllNoteRaw() async {
-    Database db = await getDatabase;
-    await db.rawDelete('DELETE FROM notes');
-  }
-
-  static Future daleteAllNote() async {
-    Database db = await getDatabase;
-    await db.delete('notes');
-  }
-
-  static Future daleteAllTodosRaw() async {
-    Database db = await getDatabase;
-    await db.rawDelete('DELETE FROM todos');
-  }
-
-  static Future daleteAllTodos() async {
-    Database db = await getDatabase;
-    await db.delete('todos');
+    await db.rawDelete('DELETE FROM cart_items');
   }
 }
 
@@ -155,26 +100,5 @@ class Note {
   @override
   String toString() {
     return 'Note{id:$id , title: $title , content: $content,description: $description,}';
-  }
-}
-
-class Todo {
-  final int? id;
-  final String title;
-  int value;
-
-  Todo({this.id, required this.title, this.value = 0});
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'value': value,
-    };
-  }
-
-  @override
-  String toString() {
-    return 'Note{id:$id , title: $title ,value: $value,}';
   }
 }

@@ -1,18 +1,19 @@
 class Product {
+  String documentId;
   String name;
   double price;
   int qty = 1;
   int qntty;
-  List imagesUrl;
-  String documentId;
+  String imagesUrl;
+
   String suppId;
   Product({
+    required this.documentId,
     required this.name,
     required this.price,
     required this.qty,
     required this.qntty,
     required this.imagesUrl,
-    required this.documentId,
     required this.suppId,
   });
   void increase() {
@@ -21,5 +22,22 @@ class Product {
 
   void decrease() {
     qty--;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'documentId': documentId,
+      'name': name,
+      'price': price,
+      'qty': qty,
+      'qntty': qntty,
+      'imagesUrl': imagesUrl,
+      'suppId': suppId,
+    };
+  }
+
+  @override
+  String toString() {
+    return 'Product{documentId: $documentId,name: $name, price:$price, qty: $qty,qntty: $qntty,imagesUrl: $imagesUrl, suppId $suppId}';
   }
 }

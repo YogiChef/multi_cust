@@ -6,7 +6,7 @@ import 'package:hub/providers/cart_provider.dart';
 import 'package:hub/providers/id_provider.dart';
 import 'package:hub/providers/sql_helper.dart';
 import 'package:hub/providers/wish_provider.dart';
-import 'package:hub/servixe/globas_service.dart';
+import 'package:hub/service/globas_service.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'auth/customer_login.dart';

@@ -12,6 +12,7 @@ import 'package:hub/main_page/cart.dart';
 import 'package:hub/minor_page/full_page_view.dart';
 import 'package:hub/minor_page/visit_store.dart';
 import 'package:hub/providers/cart_provider.dart';
+import 'package:hub/providers/product_class.dart';
 import 'package:hub/providers/wish_provider.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
@@ -21,7 +22,7 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 import '../model/product_model.dart';
-import '../servixe/globas_service.dart';
+import '../service/globas_service.dart';
 import '../widgets/snackbar.dart';
 import '../widgets/widget_button.dart';
 
@@ -210,7 +211,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                                   : widget.prolist['price'],
                                               1,
                                               widget.prolist['instock'],
-                                              widget.prolist['proimage'],
+                                              imgList.first,
                                               widget.prolist['proid'],
                                               widget.prolist['sid'],
                                             );
@@ -399,9 +400,11 @@ class _ProductDetailState extends State<ProductDetail> {
                         name: existingItemCart != null
                             ? 'ADDED TO CART'
                             : 'ADD TO CART',
-                        color: Colors.deepOrange,
+                        color: existingItemCart != null
+                            ? Colors.grey.shade300
+                            : Colors.deepOrange,
                         txtColor: Colors.white,
-                        press: documentId != null
+                        press: documentId != ''
                             ? () {
                                 if (widget.prolist['instock'] == 0) {
                                   MyMessageHandler.showSnackBar(
@@ -414,18 +417,18 @@ class _ProductDetailState extends State<ProductDetail> {
                                     'this item already in cart',
                                   );
                                 } else {
-                                  context.read<Cart>().addItem(
-                                        widget.prolist['proname'],
-                                        onSale != 0
+                                  context.read<Cart>().addItem(Product(
+                                        documentId: widget.prolist['proid'],
+                                        name: widget.prolist['proname'],
+                                        price: onSale != 0
                                             ? ((1 - (onSale / 100)) *
                                                 widget.prolist['price'])
                                             : widget.prolist['price'],
-                                        1,
-                                        widget.prolist['instock'],
-                                        widget.prolist['proimage'],
-                                        widget.prolist['proid'],
-                                        widget.prolist['sid'],
-                                      );
+                                        qty: 1,
+                                        qntty: widget.prolist['instock'],
+                                        imagesUrl: imgList.first,
+                                        suppId: widget.prolist['sid'],
+                                      ));
                                 }
                               }
                             : () {
