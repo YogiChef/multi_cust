@@ -11,10 +11,12 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 class HotDealsPage extends StatefulWidget {
   final bool fromOnBoarding;
   final String maxDiscount;
-  const HotDealsPage({
+ 
+   const HotDealsPage({
     super.key,
     required this.fromOnBoarding,
     required this.maxDiscount,
+    
   });
 
   @override
