@@ -44,8 +44,9 @@ class Wish extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeThis(String id) {
-    _list.removeWhere((element) => element.documentId == id);
+  void removeThis(String id) async {
+    await SQHelper.deleteWishlist(id).whenComplete(
+        () => _list.removeWhere((element) => element.documentId == id));
     notifyListeners();
   }
 }
