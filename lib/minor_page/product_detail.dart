@@ -203,18 +203,21 @@ class _ProductDetailState extends State<ProductDetail> {
                                         ? context
                                             .read<Wish>()
                                             .removeThis(widget.prolist['proid'])
-                                        : context.read<Wish>().addWishItem(
-                                              widget.prolist['proname'],
-                                              onSale != 0
+                                        : context
+                                            .read<Wish>()
+                                            .addWishItem(Product(
+                                              documentId:
+                                                  widget.prolist['proid'],
+                                              name: widget.prolist['proname'],
+                                              price: onSale != 0
                                                   ? ((1 - (onSale / 100)) *
                                                       widget.prolist['price'])
                                                   : widget.prolist['price'],
-                                              1,
-                                              widget.prolist['instock'],
-                                              imgList.first,
-                                              widget.prolist['proid'],
-                                              widget.prolist['sid'],
-                                            );
+                                              qty: 1,
+                                              qntty: widget.prolist['instock'],
+                                              imagesUrl: imgList.first,
+                                              suppId: widget.prolist['sid'],
+                                            ));
                                   },
                                   icon: context
                                               .watch<Wish>()

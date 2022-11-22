@@ -100,21 +100,22 @@ class CartModel extends StatelessWidget {
                                                                       product)
                                                               : await context
                                                                   .read<Wish>()
-                                                                  .addWishItem(
-                                                                    product
-                                                                        .name,
-                                                                    product
-                                                                        .price,
-                                                                    1,
-                                                                    product
-                                                                        .qntty,
-                                                                    product
-                                                                        .imagesUrl,
-                                                                    product
-                                                                        .documentId,
-                                                                    product
-                                                                        .suppId,
-                                                                  );
+                                                                  .addWishItem(Product(
+                                                                      documentId:
+                                                                          product
+                                                                              .documentId,
+                                                                      name: product
+                                                                          .name,
+                                                                      price: product
+                                                                          .price,
+                                                                      qty: 1,
+                                                                      qntty: product
+                                                                          .qntty,
+                                                                      imagesUrl:
+                                                                          product
+                                                                              .imagesUrl,
+                                                                      suppId: product
+                                                                          .suppId));
                                                           context
                                                               .read<Cart>()
                                                               .removeItem(

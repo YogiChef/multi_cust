@@ -4,6 +4,7 @@ import 'package:hub/main_page/cart.dart';
 import 'package:hub/main_page/category.dart';
 import 'package:hub/main_page/profile.dart';
 import 'package:hub/main_page/store.dart';
+import 'package:hub/providers/wish_provider.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import 'home_page.dart';
@@ -30,6 +31,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
   @override
   void initState() {
     context.read<Cart>().loadCartItemProvider();
+    context.read<Wish>().loadWishlistProvider();
     super.initState();
   }
 

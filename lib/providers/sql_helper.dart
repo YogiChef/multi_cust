@@ -52,9 +52,20 @@ class SQHelper {
     print(db.query('cart_items'));
   }
 
+   static Future insertWishlist(Product product) async {
+    Database db = await getDatabase;
+    db.insert('wish_items', product.toMap());
+    print(db.query('wish_items'));
+  }
+
   static Future<List<Map>> loadItems() async {
     Database db = await getDatabase;
     return db.query('cart_items');
+  }
+
+  static Future<List<Map>> loadWishlist() async {
+    Database db = await getDatabase;
+    return db.query('wish_items');
   }
 
   static Future updateItem(Product newproduct, String status) async {
@@ -65,24 +76,42 @@ class SQHelper {
     ]);
   }
 
+   static Future updateWishliste(Product newproduct, String status) async {
+    Database db = await getDatabase;
+    await db.rawUpdate('UPDATE wish_items SET qty = ?  WHERE documentId = ?', [
+      status == 'increment' ? newproduct.qty + 1 : newproduct.qty - 1,
+      newproduct.documentId
+    ]);
+  }
+
   static Future deleteItem(String id) async {
     Database db = await getDatabase;
     db.delete('cart_items', where: 'documentId = ?', whereArgs: [id]);
+  }
+
+   static Future deleteWishlist(String id) async {
+    Database db = await getDatabase;
+    db.delete('wish_items', where: 'documentId = ?', whereArgs: [id]);
   }
 
   static Future daleteAllItem() async {
     Database db = await getDatabase;
     await db.rawDelete('DELETE FROM cart_items');
   }
+
+  static Future daleteAllWishlist() async {
+    Database db = await getDatabase;
+    await db.rawDelete('DELETE FROM wish_items');
+  }
 }
 
-class Note {
+class Wishlist {
   final int id;
   final String title;
   final String content;
   String? description;
 
-  Note(
+  Wishlist(
       {required this.id,
       required this.title,
       required this.content,

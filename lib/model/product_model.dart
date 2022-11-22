@@ -198,18 +198,18 @@ class _ProductModelState extends State<ProductModel> {
                                 ? context
                                     .read<Wish>()
                                     .removeThis(widget.product['proid'])
-                                : context.read<Wish>().addWishItem(
-                                      widget.product['proname'],
-                                      onSale != 0
+                                : context.read<Wish>().addWishItem(Product(
+                                      documentId: widget.product['proid'],
+                                      name: widget.product['proname'],
+                                      price: onSale != 0
                                           ? ((1 - (onSale / 100)) *
                                               widget.product['price'])
                                           : widget.product['price'],
-                                      1,
-                                      widget.product['instock'],
-                                      imgList.first,
-                                      widget.product['proid'],
-                                      widget.product['sid'],
-                                    );
+                                      qty: 1,
+                                      qntty: widget.product['instock'],
+                                      imagesUrl: imgList.first,
+                                      suppId: widget.product['sid'],
+                                    ));
                           },
                           icon: existingItemWishlist != null
                               ? const Icon(

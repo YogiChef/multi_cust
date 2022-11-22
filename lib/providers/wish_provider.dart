@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:hub/providers/product_class.dart';
+import 'package:hub/providers/sql_helper.dart';
 
 class Wish extends ChangeNotifier {
-  final List<Product> _list = [];
+  static List<Product> _list = [];
   List<Product> get getWishItems {
     return _list;
   }
@@ -11,35 +12,35 @@ class Wish extends ChangeNotifier {
     return _list.length;
   }
 
-  Future<void> addWishItem(
-    String name,
-    double price,
-    int qty,
-    int qntty,
-    String imagesUrl,
-    String documentId,
-    String suppId,
-  ) async {
-    final product = Product(
-      name: name,
-      price: price,
-      qty: qty,
-      qntty: qntty,
-      imagesUrl: imagesUrl,
-      documentId: documentId,
-      suppId: suppId,
-    );
-    _list.add(product);
+  Future<void> addWishItem(Product product) async {
+    SQHelper.insertWishlist(product).whenComplete(() => _list.add(product));
     notifyListeners();
   }
 
-  void removeItem(Product product) {
-    _list.remove(product);
+  loadWishlistProvider() async {
+    List<Map> data = await SQHelper.loadWishlist();
+    _list = data.map((product) {
+      return Product(
+        documentId: product['documentId'],
+        name: product['name'],
+        price: product['price'],
+        qty: product['qty'],
+        qntty: product['qntty'],
+        imagesUrl: product['imagesUrl'],
+        suppId: product['suppId'],
+      );
+    }).toList();
     notifyListeners();
   }
 
-  void clearWishList() {
-    _list.clear();
+  void removeItem(Product product) async {
+    await SQHelper.deleteWishlist(product.documentId)
+        .whenComplete(() => _list.remove(product));
+    notifyListeners();
+  }
+
+  void clearWishList() async {
+    await SQHelper.daleteAllWishlist().whenComplete(() => _list.clear());
     notifyListeners();
   }
 

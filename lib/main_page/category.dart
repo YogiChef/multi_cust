@@ -64,7 +64,7 @@ class _CategoryPageState extends State<CategoryPage> {
             sideNavigator(size),
             const Divider(
               thickness: 2,
-              color: Colors.teal,
+              color: Colors.red,
             ),
             categView(size),
           ],
