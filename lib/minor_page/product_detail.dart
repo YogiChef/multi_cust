@@ -460,7 +460,7 @@ Widget reviews(var reviewsStream) {
             decoration: TextDecoration.underline,
             decorationThickness: 2,
             decorationColor: Colors.teal,
-            decorationStyle: TextDecorationStyle.dotted,
+            decorationStyle: TextDecorationStyle.solid,
             fontStyle: FontStyle.italic),
       ),
     ),
