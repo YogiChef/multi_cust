@@ -41,25 +41,27 @@ class _SearchPageState extends State<SearchPage> {
           ? Padding(
               padding: const EdgeInsets.only(bottom: 200),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: const BoxDecoration(
-                        // border: Border.all(width: 1, color: Colors.red),
-                        image: DecorationImage(
-                          image: AssetImage('images/inapp/search.png'),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: const BoxDecoration(
+                          // border: Border.all(width: 1, color: Colors.red),
+                          image: DecorationImage(
+                            image: AssetImage('images/inapp/search.png'),
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      'Search for\nany products',
-                      // maxLines: 2,
-                      style: GoogleFonts.lobster(fontSize: 40),
-                    ),
-                  ],
+                      Text(
+                        'Search for\nany products',
+                        // maxLines: 2,
+                        style: GoogleFonts.lobster(fontSize: 40),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

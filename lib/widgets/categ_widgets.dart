@@ -90,7 +90,7 @@ class SubcategModel extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 120,
+            height: 100,
             width: 120,
             child: Image(
               image: AssetImage(assetName),
@@ -101,7 +101,7 @@ class SubcategModel extends StatelessWidget {
               child: Text(
             subctegLabel,
             overflow: TextOverflow.ellipsis,
-          ))
+          )),
         ],
       ),
     );

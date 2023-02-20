@@ -22,9 +22,9 @@ class AccessoriesCategory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CategHeaderLabel(
-                    headerLabel: 'Accessories',
-                  ),
+                  // const CategHeaderLabel(
+                  //   headerLabel: 'Accessories',
+                  // ),
                   SizedBox(
                     height: size.height * 0.68,
                     child: GridView.count(

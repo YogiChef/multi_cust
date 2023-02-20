@@ -82,7 +82,15 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                 'See More ..',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text(widget.order['deliverystatus'])
+              Text(
+                widget.order['deliverystatus'],
+                style: TextStyle(
+                    color: widget.order['deliverystatus'] == 'shipping'
+                        ? Colors.red
+                        : widget.order['deliverystatus'] == 'delivered'
+                            ? Colors.teal
+                            : Colors.black),
+              )
             ],
           ),
           children: [

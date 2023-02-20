@@ -25,7 +25,7 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage>
     with SingleTickerProviderStateMixin {
   Timer? countDowntimer;
-  int seconds = 15;
+  int seconds = 5;
   List<int> discountList = [];
   int? maxDiscount;
   late int selectedIndex;

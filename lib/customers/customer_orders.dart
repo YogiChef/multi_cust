@@ -37,7 +37,7 @@ class CustomerOrders extends StatelessWidget {
           if (snapshot.data!.docs.isEmpty) {
             return Center(
               child: Text(
-                'You hove not \n\n active orders !',
+                'You have not \n\n active orders !',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.acme(
                   color: Colors.blueGrey,

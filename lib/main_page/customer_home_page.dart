@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:hub/main_page/cart.dart';
 import 'package:hub/main_page/category.dart';
@@ -53,7 +53,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
           const BottomNavigationBarItem(
               icon: Icon(Icons.shop_outlined), label: 'Stores'),
           BottomNavigationBarItem(
-              icon: Badge(
+              icon: badges.Badge(
                   showBadge:
                       context.read<Cart>().getItems.isEmpty ? false : true,
                   badgeContent: Text(

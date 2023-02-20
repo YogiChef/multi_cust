@@ -30,8 +30,8 @@ class MenCategory extends StatelessWidget {
                     child: SizedBox(
                       height: size.height * 0.68,
                       child: GridView.count(
-                        mainAxisSpacing: 60,
-                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 10,
                         crossAxisCount: 3,
                         children: List.generate(
                           men.length - 1,

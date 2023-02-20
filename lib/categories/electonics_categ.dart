@@ -28,9 +28,9 @@ class ElectronicsCategory extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.68,
                     child: GridView.count(
-                      mainAxisSpacing: 60,
+                      mainAxisSpacing: 20,
                       crossAxisSpacing: 10,
-                      crossAxisCount: 2,
+                      crossAxisCount: 3,
                       children: List.generate(
                         electronics.length - 1,
                         (index) => SubcategModel(
@@ -42,6 +42,7 @@ class ElectronicsCategory extends StatelessWidget {
                       ),
                     ),
                   ),
+                  
                 ],
               ),
             ),

@@ -1,15 +1,16 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../categories/accessories_categ.dart';
 import '../categories/bags_categ.dart';
 import '../categories/beauty_categ.dart';
 import '../categories/electonics_categ.dart';
 import '../categories/homegarden_categ.dart';
 import '../categories/kids_categ.dart';
-
 import '../categories/men_categ.dart';
 import '../categories/shoes_categ.dart';
 import '../categories/women_categ.dart';
+import '../minor_page/search.dart';
 import '../widgets/fakesearch.dart';
 
 List<ItemsData> items = [
@@ -48,23 +49,47 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        toolbarHeight: 50,
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const FakeSearch(),
+        title: AnimatedTextKit(
+          animatedTexts: [
+            ColorizeAnimatedText('Ecommerce',
+                textStyle:
+                    GoogleFonts.acme(fontSize: 36, fontWeight: FontWeight.bold),
+                colors: textColor),
+            ColorizeAnimatedText('Salehub',
+                textStyle:
+                    GoogleFonts.acme(fontSize: 36, fontWeight: FontWeight.bold),
+                colors: textColor)
+          ],
+          isRepeatingAnimation: true,
+          repeatForever: true,
+        ),
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        toolbarHeight: 30,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const SearchPage()));
+            },
+            icon: const Icon(
+              Icons.search,
+              size: 30,
+              color: Colors.deepOrange,
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 15,
-            ),
             sideNavigator(size),
             const Divider(
-              thickness: 2,
-              color: Colors.red,
+              thickness: 3,
+              color: Colors.teal,
             ),
             categView(size),
           ],
@@ -75,7 +100,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget sideNavigator(Size size) {
     return SizedBox(
-      height: size.height * 0.055,
+      height: size.height * 0.09,
       width: size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,

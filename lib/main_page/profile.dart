@@ -381,7 +381,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               tabYes: () async {
                                                 await auth.signOut();
-                                                // await AuthRepo.logOut();
                                                 setUserId();
                                                 // final SharedPreferences pref =
                                                 //     await _prefs;

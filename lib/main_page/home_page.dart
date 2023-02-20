@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/gallery/accessories_gallery.dart';
 import 'package:hub/gallery/bags_gallery.dart';
 import 'package:hub/gallery/beauty_gallery.dart';
@@ -9,6 +11,7 @@ import 'package:hub/gallery/men_gallery.dart';
 import 'package:hub/gallery/shoes_gallery.dart';
 import 'package:hub/gallery/women_gallery.dart';
 
+import '../minor_page/search.dart';
 import '../widgets/fakesearch.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,9 +29,38 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
         appBar: AppBar(
-          title: const FakeSearch(),
-          backgroundColor: Colors.white,
+          title: AnimatedTextKit(
+            animatedTexts: [
+              ColorizeAnimatedText('Ecommerce',
+                  textStyle: GoogleFonts.acme(
+                      fontSize: 36, fontWeight: FontWeight.bold),
+                  colors: textColor),
+              ColorizeAnimatedText('Salehub',
+                  textStyle: GoogleFonts.acme(
+                      fontSize: 36, fontWeight: FontWeight.bold),
+                  colors: textColor)
+            ],
+            isRepeatingAnimation: true,
+            repeatForever: true,
+          ),
+          backgroundColor: Colors.black,
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchPage()));
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 30,
+                color: Colors.deepOrange,
+              ),
+            )
+          ],
+          toolbarHeight: 30,
           elevation: 0,
           bottom: const TabBar(
             isScrollable: true,
