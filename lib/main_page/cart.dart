@@ -61,9 +61,9 @@ class _CartPageState extends State<CartPage> {
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.transparent,
             leading: widget.back,
-            title: const AppbarTitle(title: 'Cart'),
+            title: const AppbarTitle(title: 'Cart',),
             actions: [
               context.watch<Cart>().getItems.isEmpty
                   ? const SizedBox()
@@ -91,65 +91,68 @@ class _CartPageState extends State<CartPage> {
           body: context.watch<Cart>().getItems.isNotEmpty
               ? const CartItems()
               : const EmptyCart(),
-          bottomSheet: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: SizedBox(
-              height: 48,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const Text(
-                        'Total:  ',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        total.toStringAsFixed(2),
-                        style: const TextStyle(
-                          letterSpacing: 1.5,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange,
+          bottomSheet: context.watch<Cart>().getItems.isEmpty
+              ? const SizedBox()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: SizedBox(
+                    height: 48,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const Text(
+                              'Total:  ',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              total.toStringAsFixed(2),
+                              style: const TextStyle(
+                                letterSpacing: 1.5,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.deepOrange,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 35,
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.deepOrange, width: 2),
-                        color: Colors.deepOrange,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: MaterialButton(
-                      onPressed: total == 0.0
-                          ? null
-                          : docId != ''
-                              ? () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PlaceOrderPage()));
-                                }
-                              : () {
-                                  LoginDialog.showLoginDialog(context);
-                                },
-                      child: Text(
-                        'check out'.toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
+                        Container(
+                          height: 35,
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.deepOrange, width: 2),
+                              color: Colors.deepOrange,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: MaterialButton(
+                            onPressed: total == 0.0
+                                ? null
+                                : docId != ''
+                                    ? () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const PlaceOrderPage()));
+                                      }
+                                    : () {
+                                        LoginDialog.showLoginDialog(context);
+                                      },
+                            child: Text(
+                              'check out'.toUpperCase(),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
-            ),
-          ),
+                  ),
+                ),
         ),
       ),
     );

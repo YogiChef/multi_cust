@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hub/service/globas_service.dart';
+import 'package:hub/service/global_service.dart';
 
 class AuthRepo {
   static Future<void> singUpWithEmailAndPassword(email, password) async {

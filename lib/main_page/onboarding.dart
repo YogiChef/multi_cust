@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/minor_page/hot_deals.dart';
 import 'package:hub/providers/id_provider.dart';
-import 'package:hub/service/globas_service.dart';
+import 'package:hub/service/global_service.dart';
 import 'package:provider/provider.dart';
 
 import '../gallery/shoes_gallery.dart';
@@ -35,7 +35,7 @@ class _OnboardingPageState extends State<OnboardingPage>
   late AnimationController animationController;
   late Animation<Color?> colorTweenAnimation;
   String? name;
-  String suppId = '';
+  // String suppId = '';
 
   @override
   void initState() {
@@ -140,9 +140,13 @@ class _OnboardingPageState extends State<OnboardingPage>
   }
 
   Widget buildAsset() {
-    return Image.asset(
-      'images/onboard/$assetName.JPEG',
-      fit: BoxFit.cover,
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Image.asset(        
+        'images/onboard/$assetName.JPEG',
+        fit: BoxFit.cover,
+      ),
     );
   }
 

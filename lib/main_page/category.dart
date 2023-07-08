@@ -49,7 +49,7 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         title: AnimatedTextKit(
@@ -66,7 +66,7 @@ class _CategoryPageState extends State<CategoryPage> {
           isRepeatingAnimation: true,
           repeatForever: true,
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         centerTitle: true,
         toolbarHeight: 30,
         actions: [
@@ -86,6 +86,9 @@ class _CategoryPageState extends State<CategoryPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 10,
+            ),
             sideNavigator(size),
             const Divider(
               thickness: 3,
@@ -100,7 +103,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget sideNavigator(Size size) {
     return SizedBox(
-      height: size.height * 0.09,
+      height: size.height * 0.04,
       width: size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,

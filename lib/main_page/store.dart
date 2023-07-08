@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
 import '../minor_page/visit_store.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 
 class StoresPage extends StatefulWidget {
   const StoresPage({super.key});

@@ -14,7 +14,7 @@ import 'package:sn_progress_dialog/progress_dialog.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 import '../providers/cart_provider.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 
 class PaymentPage extends StatefulWidget {
   final String name;

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/minor_page/product_detail.dart';
 import 'package:hub/providers/product_class.dart';
-import 'package:hub/service/globas_service.dart';
+import 'package:hub/service/global_service.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
@@ -32,7 +32,6 @@ class _ProductModelState extends State<ProductModel> {
   void initState() {
     auth.authStateChanges().listen((User? user) {
       if (user != null) {
-        print(user.uid);
         setState(() {
           documentId = user.uid;
         });
@@ -90,7 +89,7 @@ class _ProductModelState extends State<ProductModel> {
                               Positioned.fill(
                                 child: Container(
                                   padding: const EdgeInsets.all(8),
-                                  color: Colors.white.withOpacity(0.7),
+                                  color: Colors.black87.withOpacity(0.5),
                                   constraints: const BoxConstraints(
                                     minHeight: 100,
                                     maxHeight: 250,

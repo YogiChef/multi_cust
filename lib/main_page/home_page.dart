@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             isRepeatingAnimation: true,
             repeatForever: true,
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           centerTitle: true,
           actions: [
             IconButton(

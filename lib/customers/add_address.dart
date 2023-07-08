@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hub/providers/id_provider.dart';
-import 'package:hub/service/globas_service.dart';
+import 'package:hub/service/global_service.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
 import 'package:hub/widgets/auth_widget.dart';
 import 'package:hub/widgets/snackbar.dart';

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:hub/providers/auth_repo.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 import '../widgets/auth_widget.dart';
 import '../widgets/snackbar.dart';
 import '../widgets/widget_button.dart';

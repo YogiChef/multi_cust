@@ -5,7 +5,7 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 import '../model/product_model.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 
 class SubCategProducts extends StatefulWidget {
   final String subcategName;

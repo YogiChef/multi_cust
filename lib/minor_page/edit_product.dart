@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hub/service/globas_service.dart';
+import 'package:hub/service/global_service.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:hub/widgets/widget_button.dart';
 import 'package:image_picker/image_picker.dart';
@@ -380,7 +380,7 @@ class _EditProductState extends State<EditProduct> {
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: TealButton(
-                          width: 0.81,
+                          width: 1,
                           name: 'Delete',
                           txtColor: Colors.white,
                           press: () {

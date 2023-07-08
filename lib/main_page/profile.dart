@@ -13,7 +13,7 @@ import 'package:hub/providers/id_provider.dart';
 import 'package:hub/widgets/widget_button.dart';
 import 'package:provider/provider.dart';
 import '../customers/wishlist.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 import '../widgets/alert_dialog.dart';
 import '../widgets/appbar_widgets.dart';
 

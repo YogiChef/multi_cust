@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:uuid/uuid.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 import '../utilities/categ_list.dart';
 import '../widgets/snackbar.dart';
 import 'package:path/path.dart' as path;

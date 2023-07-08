@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/customers/add_address.dart';
 import 'package:hub/providers/id_provider.dart';
-import 'package:hub/service/globas_service.dart';
+import 'package:hub/service/global_service.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
 import 'package:hub/widgets/widget_button.dart';
 import 'package:provider/provider.dart';

@@ -22,7 +22,7 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 import '../model/product_model.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 import '../widgets/snackbar.dart';
 import '../widgets/widget_button.dart';
 
@@ -77,372 +77,366 @@ class _ProductDetailState extends State<ProductDetail> {
     late var existingItemCart = context.read<Cart>().getItems.firstWhereOrNull(
         (element) => element.documentId == widget.prolist['proid']);
     return Material(
-      child: SafeArea(
-        child: ScaffoldMessenger(
-          key: _scaffoldKey,
-          child: Scaffold(
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    FullPageView(imgList: imgList)));
-                      },
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.45,
-                            child: Swiper(
-                                autoplay: true,
-                                pagination: const SwiperPagination(
-                                    builder: SwiperPagination.fraction),
-                                itemBuilder: (context, index) {
-                                  return Image(
-                                    image: NetworkImage(imgList[index]),
-                                    fit: BoxFit.cover,
-                                  );
-                                },
-                                itemCount: imgList.length),
-                          ),
-                          Positioned(
-                            top: 20,
-                            left: 15,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white54,
-                              child: IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back_ios,
-                                    size: 20,
-                                    color: Colors.black,
-                                  )),
-                            ),
-                          ),
-                          Positioned(
-                            top: 20,
-                            right: 15,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white54,
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.share,
-                                    size: 20,
-                                    color: Colors.black,
-                                  )),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 10, 6, 50),
-                      child: Column(
-                        children: [
-                          Text(
-                            widget.prolist['proname'],
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Text('฿ ',
-                                      style: TextStyle(
-                                          color: Colors.red.shade600,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500)),
-                                  Text(
-                                    widget.prolist['price'].toString(),
-                                    style: onSale != 0
-                                        ? const TextStyle(
-                                            color: Colors.black45,
-                                            fontSize: 16,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            decorationThickness: 2,
-                                            fontWeight: FontWeight.w500,
-                                          )
-                                        : TextStyle(
-                                            color: Colors.red.shade600,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  onSale != 0
-                                      ? Text(
-                                          ((1 - (onSale / 100)) *
-                                                  widget.prolist['price'])
-                                              .toString(),
-                                          style: TextStyle(
-                                            color: Colors.red.shade600,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        )
-                                      : const Text(''),
-                                ],
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    existingItemWishlist != null
-                                        ? context
-                                            .read<Wish>()
-                                            .removeThis(widget.prolist['proid'])
-                                        : context
-                                            .read<Wish>()
-                                            .addWishItem(Product(
-                                              documentId:
-                                                  widget.prolist['proid'],
-                                              name: widget.prolist['proname'],
-                                              price: onSale != 0
-                                                  ? ((1 - (onSale / 100)) *
-                                                      widget.prolist['price'])
-                                                  : widget.prolist['price'],
-                                              qty: 1,
-                                              qntty: widget.prolist['instock'],
-                                              imagesUrl: imgList.first,
-                                              suppId: widget.prolist['sid'],
-                                            ));
-                                  },
-                                  icon: context
-                                              .watch<Wish>()
-                                              .getWishItems
-                                              .firstWhereOrNull((product) =>
-                                                  product.documentId ==
-                                                  widget.prolist['proid']) !=
-                                          null
-                                      ? const Icon(
-                                          Icons.favorite,
-                                          color: Colors.red,
-                                          size: 30,
-                                        )
-                                      : const Icon(
-                                          Icons.favorite_border_outlined,
-                                          color: Colors.grey,
-                                          size: 30,
-                                        )),
-                            ],
-                          ),
-                          widget.prolist['instock'] == 0
-                              ? const Text(
-                                  'This item is out of stock',
-                                  style: TextStyle(
-                                    color: Colors.blueGrey,
-                                    fontSize: 16,
-                                  ),
-                                )
-                              : Text(
-                                  '${widget.prolist['instock'].toString()} pieces available in storck',
-                                  style: const TextStyle(
-                                    color: Colors.blueGrey,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                          const ProDetailsHeader(
-                            label: "   Item Description  ",
-                          ),
-                          Text(
-                            widget.prolist['prodesc'],
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.blueGrey.shade800,
-                            ),
-                          ),
-                          Stack(
-                            children: [
-                              const Positioned(
-                                  right: 50,
-                                  top: 15,
-                                  child: Text(
-                                    'total',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      decoration: TextDecoration.lineThrough,
-                                      decorationColor: Colors.teal,
-                                      decorationThickness: 1.5,
-                                    ),
-                                  )),
-                              ExpandableTheme(
-                                  data: const ExpandableThemeData(
-                                      iconColor: Colors.teal, iconSize: 30),
-                                  child: reviews(reviewsStream)),
-                            ],
-                          ),
-                          const ProDetailsHeader(
-                            label: "   Similar Item  ",
-                          ),
-                          SizedBox(
-                            child: StreamBuilder<QuerySnapshot>(
-                              stream: productsStream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return const Text('Something went wrong');
-                                }
-
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
-                                if (snapshot.data!.docs.isEmpty) {
-                                  return Center(
-                                    child: Text(
-                                      'This category \n\n has no items yet !',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.acme(
-                                        color: Colors.blueGrey,
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  );
-                                }
-
-                                return SingleChildScrollView(
-                                  child: StaggeredGridView.countBuilder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: snapshot.data!.docs.length,
-                                      crossAxisCount: 2,
-                                      itemBuilder: (context, index) {
-                                        return ProductModel(
-                                          product: snapshot.data!.docs[index],
-                                        );
-                                      },
-                                      staggeredTileBuilder: (context) =>
-                                          const StaggeredTile.fit(1)),
+      child: ScaffoldMessenger(
+        key: _scaffoldKey,
+        child: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  FullPageView(imgList: imgList)));
+                    },
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.45,
+                          child: Swiper(
+                              autoplay: true,
+                              pagination: const SwiperPagination(
+                                  builder: SwiperPagination.fraction),
+                              itemBuilder: (context, index) {
+                                return Image(
+                                  image: NetworkImage(imgList[index]),
+                                  fit: BoxFit.cover,
                                 );
                               },
+                              itemCount: imgList.length),
+                        ),
+                        Positioned(
+                          top: 30,
+                          left: 15,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white54,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 20,
+                                  color: Colors.black,
+                                )),
+                          ),
+                        ),
+                        Positioned(
+                          top: 30,
+                          right: 15,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white54,
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.share,
+                                  size: 20,
+                                  color: Colors.black,
+                                )),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 10, 6, 50),
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.prolist['proname'],
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text('฿ ',
+                                    style: TextStyle(
+                                        color: Colors.red.shade600,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500)),
+                                Text(
+                                  widget.prolist['price'].toString(),
+                                  style: onSale != 0
+                                      ? const TextStyle(
+                                          color: Colors.black45,
+                                          fontSize: 16,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          decorationThickness: 2,
+                                          fontWeight: FontWeight.w500,
+                                        )
+                                      : TextStyle(
+                                          color: Colors.red.shade600,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                onSale != 0
+                                    ? Text(
+                                        ((1 - (onSale / 100)) *
+                                                widget.prolist['price'])
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.red.shade600,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    : const Text(''),
+                              ],
                             ),
-                          )
-                        ],
-                      ),
+                            IconButton(
+                                onPressed: () {
+                                  existingItemWishlist != null
+                                      ? context
+                                          .read<Wish>()
+                                          .removeThis(widget.prolist['proid'])
+                                      : context
+                                          .read<Wish>()
+                                          .addWishItem(Product(
+                                            documentId: widget.prolist['proid'],
+                                            name: widget.prolist['proname'],
+                                            price: onSale != 0
+                                                ? ((1 - (onSale / 100)) *
+                                                    widget.prolist['price'])
+                                                : widget.prolist['price'],
+                                            qty: 1,
+                                            qntty: widget.prolist['instock'],
+                                            imagesUrl: imgList.first,
+                                            suppId: widget.prolist['sid'],
+                                          ));
+                                },
+                                icon: context
+                                            .watch<Wish>()
+                                            .getWishItems
+                                            .firstWhereOrNull((product) =>
+                                                product.documentId ==
+                                                widget.prolist['proid']) !=
+                                        null
+                                    ? const Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                        size: 30,
+                                      )
+                                    : const Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.grey,
+                                        size: 30,
+                                      )),
+                          ],
+                        ),
+                        widget.prolist['instock'] == 0
+                            ? const Text(
+                                'This item is out of stock',
+                                style: TextStyle(
+                                  color: Colors.blueGrey,
+                                  fontSize: 16,
+                                ),
+                              )
+                            : Text(
+                                '${widget.prolist['instock'].toString()} pieces available in storck',
+                                style: const TextStyle(
+                                  color: Colors.blueGrey,
+                                  fontSize: 16,
+                                ),
+                              ),
+                        const ProDetailsHeader(
+                          label: "   Item Description  ",
+                        ),
+                        Text(
+                          widget.prolist['prodesc'],
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blueGrey.shade800,
+                          ),
+                        ),
+                        Stack(
+                          children: [
+                            const Positioned(
+                                right: 50,
+                                top: 15,
+                                child: Text(
+                                  'total',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor: Colors.teal,
+                                    decorationThickness: 1.5,
+                                  ),
+                                )),
+                            ExpandableTheme(
+                                data: const ExpandableThemeData(
+                                    iconColor: Colors.teal, iconSize: 30),
+                                child: reviews(reviewsStream)),
+                          ],
+                        ),
+                        const ProDetailsHeader(
+                          label: "   Similar Item  ",
+                        ),
+                        SizedBox(
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: productsStream,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasError) {
+                                return const Text('Something went wrong');
+                              }
+
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              if (snapshot.data!.docs.isEmpty) {
+                                return Center(
+                                  child: Text(
+                                    'This category \n\n has no items yet !',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.acme(
+                                      color: Colors.blueGrey,
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              }
+
+                              return SingleChildScrollView(
+                                child: StaggeredGridView.countBuilder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.docs.length,
+                                    crossAxisCount: 2,
+                                    itemBuilder: (context, index) {
+                                      return ProductModel(
+                                        product: snapshot.data!.docs[index],
+                                      );
+                                    },
+                                    staggeredTileBuilder: (context) =>
+                                        const StaggeredTile.fit(1)),
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            bottomSheet: SizedBox(
+              height: 48,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: documentId != null
+                              ? () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => VisitStore(
+                                              suppId: widget.prolist['sid'])));
+                                }
+                              : () {
+                                  LoginDialog.showLoginDialog(context);
+                                },
+                          icon: const Icon(Icons.store_outlined),
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const CartPage(
+                                          back: AppBarBackButton(),
+                                        )));
+                          },
+                          icon: badges.Badge(
+                              showBadge: context.watch<Cart>().getItems.isEmpty
+                                  ? false
+                                  : true,
+                              badgeContent: Text(
+                                context
+                                    .watch<Cart>()
+                                    .getItems
+                                    .length
+                                    .toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              ),
+                              child: const Icon(Icons.shopping_cart_outlined)),
+                        ),
+                      ],
+                    ),
+                    TealButton(
+                      width: 0.5,
+                      name: existingItemCart != null
+                          ? 'ADDED TO CART'
+                          : 'ADD TO CART',
+                      color: existingItemCart != null
+                          ? Colors.grey.shade300
+                          : Colors.deepOrange,
+                      txtColor: Colors.white,
+                      press: documentId != ''
+                          ? () {
+                              if (widget.prolist['instock'] == 0) {
+                                MyMessageHandler.showSnackBar(
+                                  _scaffoldKey,
+                                  'this item is out of stock',
+                                );
+                              } else if (existingItemCart != null) {
+                                MyMessageHandler.showSnackBar(
+                                  _scaffoldKey,
+                                  'this item already in cart',
+                                );
+                              } else {
+                                context.read<Cart>().addItem(Product(
+                                      documentId: widget.prolist['proid'],
+                                      name: widget.prolist['proname'],
+                                      price: onSale != 0
+                                          ? ((1 - (onSale / 100)) *
+                                              widget.prolist['price'])
+                                          : widget.prolist['price'],
+                                      qty: 1,
+                                      qntty: widget.prolist['instock'],
+                                      imagesUrl: imgList.first,
+                                      suppId: widget.prolist['sid'],
+                                    ));
+                              }
+                            }
+                          : () {
+                              LoginDialog.showLoginDialog(context);
+                            },
                     )
                   ],
                 ),
               ),
-              bottomSheet: SizedBox(
-                height: 48,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 6,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: documentId != null
-                                ? () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => VisitStore(
-                                                suppId:
-                                                    widget.prolist['sid'])));
-                                  }
-                                : () {
-                                    LoginDialog.showLoginDialog(context);
-                                  },
-                            icon: const Icon(Icons.store_outlined),
-                          ),
-                          const SizedBox(
-                            width: 40,
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const CartPage(
-                                            back: AppBarBackButton(),
-                                          )));
-                            },
-                            icon: badges.Badge(
-                                showBadge:
-                                    context.watch<Cart>().getItems.isEmpty
-                                        ? false
-                                        : true,
-                                badgeContent: Text(
-                                  context
-                                      .watch<Cart>()
-                                      .getItems
-                                      .length
-                                      .toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 12),
-                                ),
-                                child:
-                                    const Icon(Icons.shopping_cart_outlined)),
-                          ),
-                        ],
-                      ),
-                      TealButton(
-                        width: 0.5,
-                        name: existingItemCart != null
-                            ? 'ADDED TO CART'
-                            : 'ADD TO CART',
-                        color: existingItemCart != null
-                            ? Colors.grey.shade300
-                            : Colors.deepOrange,
-                        txtColor: Colors.white,
-                        press: documentId != ''
-                            ? () {
-                                if (widget.prolist['instock'] == 0) {
-                                  MyMessageHandler.showSnackBar(
-                                    _scaffoldKey,
-                                    'this item is out of stock',
-                                  );
-                                } else if (existingItemCart != null) {
-                                  MyMessageHandler.showSnackBar(
-                                    _scaffoldKey,
-                                    'this item already in cart',
-                                  );
-                                } else {
-                                  context.read<Cart>().addItem(Product(
-                                        documentId: widget.prolist['proid'],
-                                        name: widget.prolist['proname'],
-                                        price: onSale != 0
-                                            ? ((1 - (onSale / 100)) *
-                                                widget.prolist['price'])
-                                            : widget.prolist['price'],
-                                        qty: 1,
-                                        qntty: widget.prolist['instock'],
-                                        imagesUrl: imgList.first,
-                                        suppId: widget.prolist['sid'],
-                                      ));
-                                }
-                              }
-                            : () {
-                                LoginDialog.showLoginDialog(context);
-                              },
-                      )
-                    ],
-                  ),
-                ),
-              )),
-        ),
+            )),
       ),
     );
   }

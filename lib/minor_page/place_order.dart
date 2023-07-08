@@ -10,7 +10,7 @@ import 'package:hub/widgets/widget_button.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/cart_provider.dart';
-import '../service/globas_service.dart';
+import '../service/global_service.dart';
 
 class PlaceOrderPage extends StatefulWidget {
   final dynamic items;

@@ -34,7 +34,10 @@ class AppbarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: GoogleFonts.acme(color: Colors.black),
+      style: GoogleFonts.acme(
+        color: Colors.black,
+        fontSize: 28,
+      ),
     );
   }
 }
