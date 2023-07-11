@@ -91,6 +91,8 @@ class _SubCategProductsState extends State<SubCategProducts> {
                 shrinkWrap: true,
                 itemCount: snapshot.data!.docs.length,
                 crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
                 itemBuilder: (context, index) {
                   return ProductModel(
                     product: snapshot.data!.docs[index],

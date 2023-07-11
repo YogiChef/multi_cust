@@ -66,7 +66,7 @@ class _ProductModelState extends State<ProductModel> {
                           )));
             },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: Stack(
           children: [
             Container(
@@ -89,7 +89,7 @@ class _ProductModelState extends State<ProductModel> {
                               Positioned.fill(
                                 child: Container(
                                   padding: const EdgeInsets.all(8),
-                                  color: Colors.black87.withOpacity(0.5),
+                                  color: Colors.black87.withOpacity(0.7),
                                   constraints: const BoxConstraints(
                                     minHeight: 100,
                                     maxHeight: 250,

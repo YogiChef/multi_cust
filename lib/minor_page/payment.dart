@@ -404,13 +404,15 @@ class _PaymentPageState extends State<PaymentPage> {
     try {
       paymentIntentData = await createPaymentIntent(total, 'BAHT');
       await stripe.initPaymentSheet(
-          paymentSheetParameters: SetupPaymentSheetParameters(
-              paymentIntentClientSecret: paymentIntentData!['client_secret'],
-              applePay: true,
-              googlePay: true,
-              testEnv: true,
-              merchantDisplayName: 'PRASERT',
-              merchantCountryCode: 'us'));
+        paymentSheetParameters: SetupPaymentSheetParameters(
+          paymentIntentClientSecret: paymentIntentData!['client_secret'],
+          applePay: true,
+          googlePay: true,
+          testEnv: true,
+          merchantDisplayName: 'PRASERT',
+          merchantCountryCode: 'us',
+        ),
+      );
       await displayPaymentSheet(data);
     } catch (e) {
       print('exception:$e');

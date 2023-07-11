@@ -108,7 +108,7 @@ class _ProductDetailState extends State<ProductDetail> {
                               itemCount: imgList.length),
                         ),
                         Positioned(
-                          top: 30,
+                          top: 40,
                           left: 15,
                           child: CircleAvatar(
                             backgroundColor: Colors.white54,
@@ -124,7 +124,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           ),
                         ),
                         Positioned(
-                          top: 30,
+                          top: 40,
                           right: 15,
                           child: CircleAvatar(
                             backgroundColor: Colors.white54,
@@ -321,6 +321,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                     shrinkWrap: true,
                                     itemCount: snapshot.data!.docs.length,
                                     crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
                                     itemBuilder: (context, index) {
                                       return ProductModel(
                                         product: snapshot.data!.docs[index],

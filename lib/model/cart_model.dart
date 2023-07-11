@@ -22,15 +22,15 @@ class CartModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      padding: const EdgeInsets.all(5.0),
       child: Card(
         child: SizedBox(
-          height: 90,
+          height: 70,
           child: Row(
             children: [
               SizedBox(
-                height: 90,
-                width: 110,
+                height: 70,
+                width: 90,
                 child: Image.network(
                   product.imagesUrl,
                   fit: BoxFit.cover,
@@ -39,7 +39,7 @@ class CartModel extends StatelessWidget {
               Flexible(
                   child: Padding(
                 padding: const EdgeInsets.only(
-                    top: 8, left: 12, bottom: 8, right: 8),
+                    top: 0, left: 12, bottom: 0, right: 8),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -47,7 +47,7 @@ class CartModel extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       child: Text(
                         product.name,
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 16,
@@ -66,10 +66,10 @@ class CartModel extends StatelessWidget {
                               color: Colors.red),
                         ),
                         Container(
-                          height: 30,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 1),
-                              borderRadius: BorderRadius.circular(5)),
+                          height: 28,
+                          // decoration: BoxDecoration(
+                          //     border: Border.all(color: Colors.grey, width: 1),
+                          //     borderRadius: BorderRadius.circular(5)),
                           child: Row(
                             children: [
                               product.qty == 1

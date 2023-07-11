@@ -24,8 +24,8 @@ class TealButton extends StatelessWidget {
     return Container(
         height: height,
         width: MediaQuery.of(context).size.width * width,
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(10)),
+        decoration:
+            BoxDecoration(color: color, borderRadius: BorderRadius.circular(5)),
         child: MaterialButton(
           onPressed: press,
           child: Text(

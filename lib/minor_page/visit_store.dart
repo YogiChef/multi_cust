@@ -55,7 +55,7 @@ class _VisitStoreState extends State<VisitStore> {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey.shade200,
             appBar: AppBar(
               leading: const AppBarBackButton(
                 color: Colors.white,
@@ -207,8 +207,8 @@ class _VisitStoreState extends State<VisitStore> {
                     shrinkWrap: true,
                     itemCount: snapshot.data!.docs.length,
                     crossAxisCount: 2,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
                     itemBuilder: (BuildContext context, int index) {
                       return ProductModel(
                         product: snapshot.data!.docs[index],

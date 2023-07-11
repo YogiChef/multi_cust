@@ -38,7 +38,6 @@ class _WomenGalleryState extends State<WomenGallery> {
         }
         if (snapshot.data!.docs.isEmpty) {
           return Center(
-            
             child: Text(
               'This category \n\n has no items yet !',
               textAlign: TextAlign.center,
@@ -57,6 +56,8 @@ class _WomenGalleryState extends State<WomenGallery> {
               shrinkWrap: true,
               itemCount: snapshot.data!.docs.length,
               crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
               itemBuilder: (context, index) {
                 return ProductModel(
                   product: snapshot.data!.docs[index],

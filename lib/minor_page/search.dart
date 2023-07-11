@@ -97,35 +97,63 @@ class SearchModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProductDetail(
-                      prolist: e,
-                    )));
-      },
+      onTap: e['instock'] == 0
+          ? null
+          : () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProductDetail(
+                            prolist: e,
+                          )));
+            },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(10)),
           width: double.infinity,
-          height: 80,
+          height: 70,
           child: Padding(
             padding: const EdgeInsets.only(right: 10),
             child: Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    height: 80,
-                    width: 80,
-                    child: Image(
-                      image: NetworkImage(e['proimage'][0]),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(5),
+                  child: e['instock'] == 0
+                      ? Stack(
+                          children: [
+                            Image(
+                              image: NetworkImage(e['proimage'][0]),
+                              height: 60,
+                              width: 80,
+                              fit: BoxFit.cover,
+                            ),
+                            Positioned.fill(
+                              child: Container(
+                                color: Colors.black87.withOpacity(0.7),
+                                child: Center(
+                                  child: Text(
+                                    'out of stock',
+                                    style: GoogleFonts.righteous(
+                                        fontSize: 12,
+                                        color: Colors.red,
+                                        backgroundColor:
+                                            Colors.yellow.shade200),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : SizedBox(
+                          height: 60,
+                          width: 80,
+                          child: Image(
+                            image: NetworkImage(e['proimage'][0]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                 ),
                 const SizedBox(
                   width: 10,
@@ -149,14 +177,14 @@ class SearchModel extends StatelessWidget {
                       style: const TextStyle(fontSize: 13, color: Colors.grey),
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 6,
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Text(
                         e['instock'].toString(),
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color:
                                 e['instock'] <= 10 ? Colors.red : Colors.grey),
                       ),

@@ -56,6 +56,8 @@ class _BagsGalleryState extends State<BagsGallery> {
               shrinkWrap: true,
               itemCount: snapshot.data!.docs.length,
               crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
               itemBuilder: (context, index) {
                 return ProductModel(
                   product: snapshot.data!.docs[index],
