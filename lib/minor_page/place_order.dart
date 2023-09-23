@@ -71,7 +71,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                   centerTitle: true,
                 ),
                 body: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 50),
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 50),
                   child: Column(
                     children: [
                       snapshot.data!.docs.isEmpty
@@ -84,7 +84,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                             const AddAddress()));
                               },
                               child: Container(
-                                height: 110,
+                                height: 90,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                     color: Colors.transparent,
@@ -180,8 +180,8 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                 itemBuilder: (context, index) {
                                   final order = cart.getItems[index];
                                   return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6, vertical: 8),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 4),
                                     child: Container(
                                       height: 90,
                                       decoration: BoxDecoration(
@@ -192,15 +192,18 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                               BorderRadius.circular(5)),
                                       child: Row(children: [
                                         ClipRRect(
-                                          borderRadius: const BorderRadius.only(
-                                              bottomLeft: Radius.circular(5),
-                                              topLeft: Radius.circular(5)),
-                                          child: SizedBox(
-                                            height: 89,
-                                            width: 89,
-                                            child: Image.network(
-                                              order.imagesUrl,
-                                              fit: BoxFit.cover,
+                                          // borderRadius: const BorderRadius.only(
+                                          //     bottomLeft: Radius.circular(5),
+                                          //     topLeft: Radius.circular(5)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: SizedBox(
+                                              height: 70,
+                                              width: 90,
+                                              child: Image.network(
+                                                order.imagesUrl,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -280,7 +283,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                 ),
                 bottomSheet: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 3),
                   child: TealButton(
                     width: 1,
                     name: snapshot.data!.docs.isEmpty

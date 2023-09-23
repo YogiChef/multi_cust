@@ -36,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
   CollectionReference customers = store.collection('customers');
   // CollectionReference anonymous = store.collection('anonymous');
 
-  setUserId() {
+  clearUserId() {
     context.read<IdProvider>().clearCustId();
   }
 
@@ -381,7 +381,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               tabYes: () async {
                                                 await auth.signOut();
-                                                setUserId();
+                                                clearUserId();
                                                 // final SharedPreferences pref =
                                                 //     await _prefs;
                                                 // pref.setString('custId', '');
@@ -687,7 +687,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         },
                                         tabYes: () async {
                                           await AuthRepo.logOut();
-                                          setUserId();
+                                          clearUserId();
                                           // final SharedPreferences pref =
                                           //     await _prefs;
                                           // pref.setString('custId', '');

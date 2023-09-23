@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:hub/main_page/cart.dart';
 import 'package:hub/main_page/category.dart';
 import 'package:hub/main_page/profile.dart';
@@ -47,11 +48,11 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
         currentIndex: selectedIndex!,
         items: [
           const BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Home'),
+              icon: Icon(IconlyLight.home), label: 'Home'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined), label: 'Category'),
+              icon: Icon(IconlyLight.search), label: 'Category'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.shop_outlined), label: 'Stores'),
+              icon: Icon(IconlyLight.category), label: 'Stores'),
           BottomNavigationBarItem(
               icon: badges.Badge(
                   showBadge:
@@ -60,10 +61,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                     context.watch<Cart>().getItems.length.toString(),
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
-                  child: const Icon(Icons.shopping_cart_outlined)),
+                  child: const Icon(IconlyLight.bag)),
               label: 'Cart'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), label: 'Profile'),
+              icon: Icon(IconlyLight.profile), label: 'Profile'),
         ],
         onTap: (index) {
           setState(() {

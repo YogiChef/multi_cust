@@ -6,6 +6,7 @@ import 'package:collection/collection.dart'; //package:collection/src/iterable_e
 import 'package:expandable/expandable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/main_page/cart.dart';
@@ -197,26 +198,33 @@ class _ProductDetailState extends State<ProductDetail> {
                               ],
                             ),
                             IconButton(
-                                onPressed: () {
-                                  existingItemWishlist != null
-                                      ? context
-                                          .read<Wish>()
-                                          .removeThis(widget.prolist['proid'])
-                                      : context
-                                          .read<Wish>()
-                                          .addWishItem(Product(
-                                            documentId: widget.prolist['proid'],
-                                            name: widget.prolist['proname'],
-                                            price: onSale != 0
-                                                ? ((1 - (onSale / 100)) *
-                                                    widget.prolist['price'])
-                                                : widget.prolist['price'],
-                                            qty: 1,
-                                            qntty: widget.prolist['instock'],
-                                            imagesUrl: imgList.first,
-                                            suppId: widget.prolist['sid'],
-                                          ));
-                                },
+                                onPressed: documentId == null
+                                    ? () {
+                                        LoginDialog.showLoginDialog(context);
+                                      }
+                                    : () {
+                                        existingItemWishlist != null
+                                            ? context.read<Wish>().removeThis(
+                                                widget.prolist['proid'])
+                                            : context
+                                                .read<Wish>()
+                                                .addWishItem(Product(
+                                                  documentId:
+                                                      widget.prolist['proid'],
+                                                  name:
+                                                      widget.prolist['proname'],
+                                                  price: onSale != 0
+                                                      ? ((1 - (onSale / 100)) *
+                                                          widget
+                                                              .prolist['price'])
+                                                      : widget.prolist['price'],
+                                                  qty: 1,
+                                                  qntty:
+                                                      widget.prolist['instock'],
+                                                  imagesUrl: imgList.first,
+                                                  suppId: widget.prolist['sid'],
+                                                ));
+                                      },
                                 icon: context
                                             .watch<Wish>()
                                             .getWishItems
@@ -364,7 +372,7 @@ class _ProductDetailState extends State<ProductDetail> {
                               : () {
                                   LoginDialog.showLoginDialog(context);
                                 },
-                          icon: const Icon(Icons.store_outlined),
+                          icon: const Icon(IconlyLight.category),
                         ),
                         const SizedBox(
                           width: 40,
@@ -391,50 +399,56 @@ class _ProductDetailState extends State<ProductDetail> {
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 12),
                               ),
-                              child: const Icon(Icons.shopping_cart_outlined)),
+                              child: const Icon(IconlyLight.bag)),
                         ),
                       ],
                     ),
-                    TealButton(
-                      width: 0.5,
-                      name: existingItemCart != null
-                          ? 'ADDED TO CART'
-                          : 'ADD TO CART',
-                      color: existingItemCart != null
-                          ? Colors.grey.shade300
-                          : Colors.deepOrange,
-                      txtColor: Colors.white,
-                      press: documentId != ''
-                          ? () {
-                              if (widget.prolist['instock'] == 0) {
-                                MyMessageHandler.showSnackBar(
-                                  _scaffoldKey,
-                                  'this item is out of stock',
-                                );
-                              } else if (existingItemCart != null) {
-                                MyMessageHandler.showSnackBar(
-                                  _scaffoldKey,
-                                  'this item already in cart',
-                                );
-                              } else {
-                                context.read<Cart>().addItem(Product(
-                                      documentId: widget.prolist['proid'],
-                                      name: widget.prolist['proname'],
-                                      price: onSale != 0
-                                          ? ((1 - (onSale / 100)) *
-                                              widget.prolist['price'])
-                                          : widget.prolist['price'],
-                                      qty: 1,
-                                      qntty: widget.prolist['instock'],
-                                      imagesUrl: imgList.first,
-                                      suppId: widget.prolist['sid'],
-                                    ));
-                              }
-                            }
-                          : () {
-                              LoginDialog.showLoginDialog(context);
-                            },
-                    )
+                    documentId == null
+                        ? const SizedBox()
+                        : existingItemCart != null
+                            ? const SizedBox()
+                            : TealButton(
+                                width: 0.5,
+                                name: existingItemCart != null
+                                    ? 'ADDED TO CART'
+                                    : 'ADD TO CART',
+                                color: existingItemCart != null
+                                    ? Colors.grey.shade300
+                                    : Colors.deepOrange,
+                                txtColor: Colors.white,
+                                press: documentId != null
+                                    ? () {
+                                        if (widget.prolist['instock'] == 0) {
+                                          MyMessageHandler.showSnackBar(
+                                            _scaffoldKey,
+                                            'this item is out of stock',
+                                          );
+                                        } else if (existingItemCart != null) {
+                                          MyMessageHandler.showSnackBar(
+                                            _scaffoldKey,
+                                            'this item already in cart',
+                                          );
+                                        } else {
+                                          context.read<Cart>().addItem(Product(
+                                                documentId:
+                                                    widget.prolist['proid'],
+                                                name: widget.prolist['proname'],
+                                                price: onSale != 0
+                                                    ? ((1 - (onSale / 100)) *
+                                                        widget.prolist['price'])
+                                                    : widget.prolist['price'],
+                                                qty: 1,
+                                                qntty:
+                                                    widget.prolist['instock'],
+                                                imagesUrl: imgList.first,
+                                                suppId: widget.prolist['sid'],
+                                              ));
+                                        }
+                                      }
+                                    : () {
+                                        LoginDialog.showLoginDialog(context);
+                                      },
+                              )
                   ],
                 ),
               ),

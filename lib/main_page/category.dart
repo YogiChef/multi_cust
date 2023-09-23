@@ -1,6 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hub/widgets/appbar_widgets.dart';
 import '../categories/accessories_categ.dart';
 import '../categories/bags_categ.dart';
 import '../categories/beauty_categ.dart';
@@ -10,9 +10,6 @@ import '../categories/kids_categ.dart';
 import '../categories/men_categ.dart';
 import '../categories/shoes_categ.dart';
 import '../categories/women_categ.dart';
-import '../minor_page/search.dart';
-import '../widgets/fakesearch.dart';
-
 List<ItemsData> items = [
   ItemsData(label: 'Men'),
   ItemsData(label: 'Women'),
@@ -50,42 +47,46 @@ class _CategoryPageState extends State<CategoryPage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        title: AnimatedTextKit(
-          animatedTexts: [
-            ColorizeAnimatedText('Ecommerce',
-                textStyle:
-                    GoogleFonts.acme(fontSize: 36, fontWeight: FontWeight.bold),
-                colors: textColor),
-            ColorizeAnimatedText('Salehub',
-                textStyle:
-                    GoogleFonts.acme(fontSize: 36, fontWeight: FontWeight.bold),
-                colors: textColor)
-          ],
-          isRepeatingAnimation: true,
-          repeatForever: true,
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        toolbarHeight: 30,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SearchPage()));
-            },
-            icon: const Icon(
-              Icons.search,
-              size: 30,
-              color: Colors.deepOrange,
-            ),
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      // title: AnimatedTextKit(
+      //   animatedTexts: [
+      //     ColorizeAnimatedText('Ecommerce',
+      //         textStyle:
+      //             GoogleFonts.acme(fontSize: 36, fontWeight: FontWeight.bold),
+      //         colors: textColor),
+      //     ColorizeAnimatedText('Salehub',
+      //         textStyle:
+      //             GoogleFonts.acme(fontSize: 36, fontWeight: FontWeight.bold),
+      //         colors: textColor)
+      //   ],
+      //   isRepeatingAnimation: true,
+      //   repeatForever: true,
+      // ),
+      // backgroundColor: Colors.white,
+      // centerTitle: true,
+      // toolbarHeight: 30,
+      // actions: [
+      //   IconButton(
+      //     onPressed: () {
+      //       Navigator.push(context,
+      //           MaterialPageRoute(builder: (context) => const SearchPage()));
+      //     },
+      //     icon: const Icon(
+      //       Icons.search,
+      //       size: 30,
+      //       color: Colors.deepOrange,
+      //     ),
+      //   )
+      // ],
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 60,
+            ),
+            const SearchWidget(),
             const SizedBox(
               height: 10,
             ),

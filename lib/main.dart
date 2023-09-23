@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hub/main_page/onboarding.dart';
 import 'package:hub/main_page/welcom.dart';
+import 'package:hub/minor_page/search.dart';
 import 'package:hub/providers/cart_provider.dart';
 import 'package:hub/providers/id_provider.dart';
 import 'package:hub/providers/sql_helper.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         'customer_home': (context) => const CustomerHomePage(),
         'customer_signup': (context) => const CustomerRegister(),
         'customer_login': (context) => const CustomerLogin(),
+        'search': (context) => const SearchPage(),
       },
     );
   }

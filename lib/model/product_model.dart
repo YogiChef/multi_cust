@@ -216,39 +216,46 @@ class _ProductModelState extends State<ProductModel> {
               top: 0,
               right: 0,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.black12,
-                    borderRadius: BorderRadius.circular(5)),
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(5))),
                 child: widget.product['instock'] == 0
                     ? const SizedBox()
                     : Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           SizedBox(
                             height: 30,
                             width: 35,
                             child: IconButton(
-                                onPressed: () {
-                                  existingItemWishlist != null
-                                      ? context
-                                          .read<Wish>()
-                                          .removeThis(widget.product['proid'])
-                                      : context
-                                          .read<Wish>()
-                                          .addWishItem(Product(
-                                            documentId: widget.product['proid'],
-                                            name: widget.product['proname'],
-                                            price: onSale != 0
-                                                ? ((1 - (onSale / 100)) *
-                                                    widget.product['price'])
-                                                : widget.product['price'],
-                                            qty: 1,
-                                            qntty: widget.product['instock'],
-                                            imagesUrl: imgList.first,
-                                            suppId: widget.product['sid'],
-                                          ));
-                                },
+                                onPressed: documentId == null
+                                    ? () {
+                                        LoginDialog.showLoginDialog(context);
+                                      }
+                                    : () {
+                                        existingItemWishlist != null
+                                            ? context.read<Wish>().removeThis(
+                                                widget.product['proid'])
+                                            : context
+                                                .read<Wish>()
+                                                .addWishItem(Product(
+                                                  documentId:
+                                                      widget.product['proid'],
+                                                  name:
+                                                      widget.product['proname'],
+                                                  price: onSale != 0
+                                                      ? ((1 - (onSale / 100)) *
+                                                          widget
+                                                              .product['price'])
+                                                      : widget.product['price'],
+                                                  qty: 1,
+                                                  qntty:
+                                                      widget.product['instock'],
+                                                  imagesUrl: imgList.first,
+                                                  suppId: widget.product['sid'],
+                                                ));
+                                      },
                                 icon: existingItemWishlist != null
                                     ? const Icon(
                                         Icons.favorite,

@@ -16,71 +16,69 @@ class _FullPageViewState extends State<FullPageView> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Stack(
-              children: [
-                SizedBox(
-                  height: size.height * 0.7,
-                  child: PageView(
-                    onPageChanged: (value) {
-                      setState(() {
-                        index = value;
-                      });
-                    },
-                    controller: _controller,
-                    children: imges(),
-                  ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Stack(
+            children: [
+              SizedBox(
+                height: size.height * 0.8,
+                child: PageView(
+                  onPageChanged: (value) {
+                    setState(() {
+                      index = value;
+                    });
+                  },
+                  controller: _controller,
+                  children: imges(),
                 ),
-                Positioned(
-                    top: 20,
-                    left: 20,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.grey.shade300,
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Center(
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                          )),
-                    )),
-                Positioned(
-                  bottom: 5,
-                  left: size.width * 0.45,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      ('${index + 1}') +
-                          ('/') +
-                          (widget.imgList.length.toString()),
-                      style: const TextStyle(
-                        fontSize: 24,
-                        color: Colors.teal,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 8,
-                      ),
+              ),
+              Positioned(
+                  top: 40,
+                  left: 20,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.grey.shade300,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Center(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.black,
+                            size: 20,
+                          ),
+                        )),
+                  )),
+              Positioned(
+                bottom: 5,
+                left: size.width * 0.45,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    ('${index + 1}') +
+                        ('/') +
+                        (widget.imgList.length.toString()),
+                    style: const TextStyle(
+                      fontSize: 24,
+                      color: Colors.teal,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 8,
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.2,
-              child: imageView(),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: size.height * 0.15,
+            child: imageView(),
+          ),
+        ],
       ),
     );
   }
@@ -107,7 +105,7 @@ class _FullPageViewState extends State<FullPageView> {
         },
         child: Container(
           margin: const EdgeInsets.fromLTRB(0, 8, 4, 20),
-          width: 120,
+          width: MediaQuery.of(context).size.width * 0.3,
           decoration: BoxDecoration(
               border:
                   Border.all(width: 3, color: Colors.black.withOpacity(0.3)),
