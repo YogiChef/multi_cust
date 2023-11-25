@@ -4,6 +4,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hub/service/global_service.dart';
 import 'package:hub/widgets/widget_button.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/id_provider.dart';
 
 class CustomerOrderModel extends StatefulWidget {
   final dynamic order;
@@ -244,11 +247,12 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                                                                       'proid'])
                                                                   .collection(
                                                                       'reviews');
+                                                          String docId = context.read<IdProvider>().getData;            
                                                           await collRf
-                                                              .doc(auth
-                                                                  .currentUser!
-                                                                  .uid)
+                                                              .doc(docId)
                                                               .set({
+                                                                'cid': docId,
+                                                                'orderid': widget.order['orderid'],
                                                             'name':
                                                                 widget.order[
                                                                     'custname'],

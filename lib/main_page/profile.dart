@@ -93,8 +93,8 @@ class _ProfilePageState extends State<ProfilePage> {
           // :
           customers.doc(docId).get(),
       builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot>? snapshot) {
+        if (snapshot!.hasError) {
           return const Text('Something went wrong');
         }
         if (snapshot.hasData && !snapshot.data!.exists) {
@@ -110,8 +110,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                   height: 200,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Colors.teal, Colors.blueGrey.shade100])),
+                      gradient: LinearGradient(colors: [
+                    Colors.red.shade900,
+                    Colors.blueGrey.shade100
+                  ])),
                 ),
                 CustomScrollView(
                   slivers: [
@@ -139,8 +141,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               background: Container(
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(colors: [
-                                  Colors.teal,
-                                  Colors.blueGrey.shade100
+                                  Colors.red.shade900,
+                                  Colors.white
                                 ])),
                                 child: Padding(
                                   padding:
@@ -192,7 +194,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 Container(
                                   decoration: const BoxDecoration(
-                                      color: Colors.black54,
+                                      color: Colors.teal,
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(10),
                                           bottomLeft: Radius.circular(10))),
@@ -222,9 +224,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 Container(
-                                  decoration: const BoxDecoration(
-                                      color: Colors.teal,
-                                      borderRadius: BorderRadius.only(
+                                  decoration: BoxDecoration(
+                                      color: Colors.red.shade900,
+                                      borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(0),
                                           bottomLeft: Radius.circular(0))),
                                   child: TextButton(
@@ -251,9 +253,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 Container(
-                                  decoration: const BoxDecoration(
-                                      color: Colors.black54,
-                                      borderRadius: BorderRadius.only(
+                                  decoration: BoxDecoration(
+                                      color: Colors.purple[900],
+                                      borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(10),
                                           bottomRight: Radius.circular(10))),
                                   child: TextButton(
@@ -381,7 +383,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                               },
                                               tabYes: () async {
                                                 await auth.signOut();
-                                                clearUserId();
+                                                await clearUserId();
                                                 // final SharedPreferences pref =
                                                 //     await _prefs;
                                                 // pref.setString('custId', '');
@@ -392,7 +394,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                     .whenComplete(() => Navigator
                                                         .pushReplacementNamed(
                                                             context,
-                                                            'onboarding_page'));
+                                                            'customer_login'));
                                               },
                                               title: 'Log Out');
                                         },
@@ -436,7 +438,7 @@ class _ProfilePageState extends State<ProfilePage> {
       return 'example 143 M. 1 Buengkan 38170';
     } else if (/*auth.currentUser!.isAnonymous == false*/ docId != '' &&
         data['address'] == '') {
-      return 'Set Your Address';
+      return data['address'];
     }
     return data['address'];
   }
@@ -687,7 +689,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         },
                                         tabYes: () async {
                                           await AuthRepo.logOut();
-                                          clearUserId();
+                                          await clearUserId();
                                           // final SharedPreferences pref =
                                           //     await _prefs;
                                           // pref.setString('custId', '');
@@ -695,7 +697,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   microseconds: 100))
                                               .whenComplete(() => Navigator
                                                   .pushReplacementNamed(context,
-                                                      'onboarding_page'));
+                                                      'customer_login'));
                                         },
                                         title: 'Log Out');
                                   },

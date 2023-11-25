@@ -66,6 +66,7 @@ class CartModel extends StatelessWidget {
                               color: Colors.red),
                         ),
                         Container(
+                          padding: const EdgeInsets.only(top: 0),
                           height: 28,
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey, width: 1),
@@ -79,10 +80,18 @@ class CartModel extends StatelessWidget {
                                             context: context,
                                             builder: (context) =>
                                                 CupertinoActionSheet(
-                                                  title:
-                                                      const Text('Remove Item'),
+                                                  title: const Text(
+                                                    'Remove Item',
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        color: Colors.teal),
+                                                  ),
                                                   message: const Text(
-                                                      'Are you sure to remove this item ?.'),
+                                                      'Are you sure to remove this item ?.',
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors
+                                                              .deepOrange)),
                                                   actions: <
                                                       CupertinoActionSheetAction>[
                                                     CupertinoActionSheetAction(
@@ -128,7 +137,14 @@ class CartModel extends StatelessWidget {
                                                               context);
                                                         },
                                                         child: const Text(
-                                                            'Move to wishlist')),
+                                                            'Move to wishlist',
+                                                            style: TextStyle(
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .teal))),
                                                     CupertinoActionSheetAction(
                                                       onPressed: () async {
                                                         context

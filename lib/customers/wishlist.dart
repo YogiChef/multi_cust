@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
 import 'package:provider/provider.dart';
 import '../model/wish_model.dart';
@@ -20,6 +21,7 @@ class _WishlistPageState extends State<WishlistPage> {
     return Material(
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
@@ -44,7 +46,7 @@ class _WishlistPageState extends State<WishlistPage> {
                             });
                       },
                       icon: const Icon(
-                        Icons.delete_outlined,
+                        IconlyLight.delete,
                         color: Colors.black54,
                       ))
             ],

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
 import '../categories/accessories_categ.dart';
@@ -10,6 +9,7 @@ import '../categories/kids_categ.dart';
 import '../categories/men_categ.dart';
 import '../categories/shoes_categ.dart';
 import '../categories/women_categ.dart';
+
 List<ItemsData> items = [
   ItemsData(label: 'Men'),
   ItemsData(label: 'Women'),
@@ -104,7 +104,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget sideNavigator(Size size) {
     return SizedBox(
-      height: size.height * 0.04,
+      height: size.height * 0.03,
       width: size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -143,9 +143,9 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget categView(Size size) {
     return Container(
-      height: size.height * 0.8,
+      height: size.height * 0.72,
       width: size.width,
-      color: Colors.white,
+      color: Colors.white10,
       child: PageView(
         controller: _pageController,
         onPageChanged: (value) {

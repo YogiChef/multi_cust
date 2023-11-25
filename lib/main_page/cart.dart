@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:hub/providers/id_provider.dart';
 import 'package:hub/widgets/alert_dialog.dart';
 import 'package:hub/widgets/appbar_widgets.dart';
@@ -63,7 +64,9 @@ class _CartPageState extends State<CartPage> {
             centerTitle: true,
             backgroundColor: Colors.transparent,
             leading: widget.back,
-            title: const AppbarTitle(title: 'Cart',),
+            title: const AppbarTitle(
+              title: 'Cart',
+            ),
             actions: [
               context.watch<Cart>().getItems.isEmpty
                   ? const SizedBox()
@@ -83,7 +86,7 @@ class _CartPageState extends State<CartPage> {
                         );
                       },
                       icon: const Icon(
-                        Icons.delete_outlined,
+                        IconlyLight.delete,
                         color: Colors.black54,
                       ))
             ],

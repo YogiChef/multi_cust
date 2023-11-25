@@ -26,7 +26,7 @@ class IdProvider with ChangeNotifier {
   clearCustId() async {
     final SharedPreferences pref = await _prefs;
     pref.setString('custId', '').whenComplete(
-          () => _custId = '',
+          () => _custId == '',
         );
     print('customerid was removed from shared preferences');
 

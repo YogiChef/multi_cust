@@ -187,7 +187,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                     ? Text(
                                         ((1 - (onSale / 100)) *
                                                 widget.prolist['price'])
-                                            .toString(),
+                                            .toStringAsFixed(2),
                                         style: TextStyle(
                                           color: Colors.red.shade600,
                                           fontSize: 20,
@@ -252,12 +252,30 @@ class _ProductDetailState extends State<ProductDetail> {
                                   fontSize: 16,
                                 ),
                               )
-                            : Text(
-                                '${widget.prolist['instock'].toString()} pieces available in storck',
-                                style: const TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 16,
-                                ),
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.green[200],
+                                    child: Text(
+                                      widget.prolist['instock'].toString(),
+                                      style: TextStyle(
+                                        color: Colors.red[900],
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Text(
+                                    'Pieces available in storck',
+                                    style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
                               ),
                         const ProDetailsHeader(
                           label: "   Item Description  ",

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/minor_page/edit_store.dart';
+import 'package:hub/providers/id_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
-
 import '../model/product_model.dart';
 import '../service/global_service.dart';
 import '../widgets/appbar_widgets.dart';
@@ -20,6 +21,33 @@ class VisitStore extends StatefulWidget {
 
 class _VisitStoreState extends State<VisitStore> {
   bool following = false;
+  String customerId = '';
+
+  List<String> subscriptionsList = [];
+
+  checkUserSubcription() {
+    store
+        .collection('suppliers')
+        .doc(widget.suppId)
+        .collection('subscriptions')
+        .get()
+        .then((QuerySnapshot snapshot) {
+      for (var doc in snapshot.docs) {
+        subscriptionsList.add(doc['customerid']);
+      }
+    }).whenComplete(() {
+      following =
+          subscriptionsList.contains(context.read<IdProvider>().getData);
+    });
+  }
+
+  @override
+  void initState() {
+    customerId = context.read<IdProvider>().getData;
+    customerId == '' ? null : checkUserSubcription();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,7 +91,7 @@ class _VisitStoreState extends State<VisitStore> {
               toolbarHeight: 100,
               flexibleSpace: data['coverimage'] == ''
                   ? Image.asset(
-                      'images/inapp/coverimage.jpg',
+                      'images/inapp/themoon.jpg',
                       fit: BoxFit.cover,
                     )
                   : Image.network(
@@ -79,7 +107,7 @@ class _VisitStoreState extends State<VisitStore> {
                         border: Border.all(
                           width: 4,
                           color: data['coverimage'] == ''
-                              ? Colors.yellowAccent
+                              ? Colors.green
                               : Colors.white,
                         ),
                         borderRadius: BorderRadius.circular(15)),
@@ -113,7 +141,8 @@ class _VisitStoreState extends State<VisitStore> {
                               ],
                             ),
                           ),
-                          data['sid'] == auth.currentUser!.uid
+                          // data['sid'] == auth.currentUser!.uid
+                          customerId == ''
                               ? Container(
                                   height: 35,
                                   width: size.width * 0.3,
@@ -156,13 +185,15 @@ class _VisitStoreState extends State<VisitStore> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(5)),
                                   child: MaterialButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        following = !following;
-                                      });
-                                    },
+                                    onPressed: following == false
+                                        ? () {
+                                            subscribeToTopic();
+                                          }
+                                        : () {
+                                            unsubscribeFromTopic();
+                                          },
                                     child: following == true
-                                        ? Text('Following',
+                                        ? Text('Followed',
                                             style: GoogleFonts.aBeeZee(
                                                 color: Colors.teal,
                                                 fontSize: 16))
@@ -237,5 +268,34 @@ class _VisitStoreState extends State<VisitStore> {
         ));
       },
     );
+  }
+
+  void subscribeToTopic() {
+    messaging.subscribeToTopic("topic");
+    String id = context.read<IdProvider>().getData;
+    store
+        .collection('suppliers')
+        .doc(widget.suppId)
+        .collection('subscriptions')
+        .doc(id)
+        .set({'customerid': id});
+    setState(() {
+      following = true;
+    });
+  }
+
+  void unsubscribeFromTopic() {
+    messaging.unsubscribeFromTopic("topic");
+    String id = context.read<IdProvider>().getData;
+    store
+        .collection('suppliers')
+        .doc(widget.suppId)
+        .collection('subscriptions')
+        .doc(id)
+        .delete();
+
+    setState(() {
+      following = false;
+    });
   }
 }

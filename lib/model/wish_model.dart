@@ -4,6 +4,7 @@ import 'package:hub/providers/wish_provider.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import '../providers/product_class.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 class WishlistModel extends StatelessWidget {
   const WishlistModel({
@@ -38,11 +39,11 @@ class WishlistModel extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      product.name,
+                      product.name.toUpperCase(),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         color: Colors.grey.shade700,
                       ),
                     ),
@@ -63,7 +64,7 @@ class WishlistModel extends StatelessWidget {
                                   context.read<Wish>().removeItem(product);
                                 },
                                 icon: const Icon(
-                                  Icons.delete_forever,
+                                  IconlyLight.delete,
                                   size: 20,
                                 )),
                             const SizedBox(
@@ -89,7 +90,7 @@ class WishlistModel extends StatelessWidget {
                                           ));
                                     },
                                     icon: const Icon(
-                                      Icons.shopping_cart_outlined,
+                                      IconlyLight.bag,
                                       size: 20,
                                     )),
                           ],

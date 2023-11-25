@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/minor_page/product_detail.dart';
 
@@ -29,13 +30,27 @@ class _SearchPageState extends State<SearchPage> {
               )),
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: CupertinoSearchTextField(
-            autofocus: true,
-            onChanged: (value) {
-              setState(() {
-                searchInput = value;
-              });
-            },
+          title: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: CupertinoSearchTextField(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              prefixInsets: const EdgeInsets.only(
+                left: 10,
+              ),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey),
+                  borderRadius: BorderRadius.circular(30)),
+              prefixIcon: const Icon(
+                IconlyLight.search,
+                size: 20,
+              ),
+              autofocus: true,
+              onChanged: (value) {
+                setState(() {
+                  searchInput = value;
+                });
+              },
+            ),
           )),
       body: searchInput == ''
           ? Padding(

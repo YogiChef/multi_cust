@@ -49,6 +49,7 @@ class _AddAddressState extends State<AddAddress> {
           child: Form(
             key: formKey,
             child: SingleChildScrollView(
+              reverse: true,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,7 +157,7 @@ class _AddAddressState extends State<AddAddress> {
                   Center(
                     child: TealButton(
                       width: 0.7,
-                      name: 'Add New Address',
+                      name: 'Save New Address',
                       txtColor: Colors.white,
                       press: () async {
                         if (formKey.currentState!.validate()) {

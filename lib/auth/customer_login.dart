@@ -100,7 +100,7 @@ class _CustomerLoginState extends State<CustomerLogin>
         body: SafeArea(
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            reverse: true,
+            // reverse: true,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Form(
@@ -253,10 +253,11 @@ class _CustomerLoginState extends State<CustomerLogin>
   }
 
   void logIn() async {
-    setState(() {
-      processing = true;
-    });
+   
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        processing = true;
+      });
       try {
         await AuthRepo.loginWithEmailAndPassword(email, password);
         await AuthRepo.reloadUserData();
@@ -289,9 +290,9 @@ class _CustomerLoginState extends State<CustomerLogin>
           });
           MyMessageHandler.showSnackBar(_scaffoldKey, e.message.toString());
           //   } else if (e.code == 'wrong-password') {
-          //     setState(() {
-          //       processing = false;
-          //     });
+          // setState(() {
+          //   processing = false;
+          // });
           //     MyMessageHandler.showSnackBar(
           //         _scaffoldKey, 'Wrong password provided for that user.');
           //   }

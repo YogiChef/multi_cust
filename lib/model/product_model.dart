@@ -3,6 +3,7 @@
 import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hub/minor_page/product_detail.dart';
 import 'package:hub/providers/product_class.dart';
@@ -40,6 +41,7 @@ class _ProductModelState extends State<ProductModel> {
           documentId = null;
         });
       }
+      // user != null ? documentId = user.uid : documentId = null;
     });
     super.initState();
   }
@@ -258,12 +260,12 @@ class _ProductModelState extends State<ProductModel> {
                                       },
                                 icon: existingItemWishlist != null
                                     ? const Icon(
-                                        Icons.favorite,
+                                        IconlyBold.heart,
                                         color: Colors.red,
                                         size: 18,
                                       )
                                     : const Icon(
-                                        Icons.favorite_outline,
+                                        IconlyLight.heart,
                                         color: Colors.white,
                                         size: 18,
                                       )),
@@ -305,12 +307,12 @@ class _ProductModelState extends State<ProductModel> {
                                       },
                                 icon: existingItemCart != null
                                     ? const Icon(
-                                        Icons.delete_forever,
+                                        IconlyBold.delete,
                                         color: Colors.red,
                                         size: 18,
                                       )
                                     : const Icon(
-                                        Icons.shopping_bag_outlined,
+                                        IconlyLight.bag,
                                         color: Colors.white,
                                         size: 18,
                                       )),
