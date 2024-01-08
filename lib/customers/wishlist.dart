@@ -67,17 +67,19 @@ class EmptyWishCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text(
-            'Your Wishlist\n\n Is Empty !',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontSize: 36,
-                fontWeight: FontWeight.bold),
+        children: [
+          Center(
+            child: Text(
+              'Your Wishlist\n Is Empty !',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.blueGrey,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),

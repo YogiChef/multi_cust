@@ -121,7 +121,7 @@ class _VisitStoreState extends State<VisitStore> {
                   ),
                   SizedBox(
                     height: 100,
-                    width: size.width * 0.5,
+                    width: size.width * 0.46,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -134,6 +134,8 @@ class _VisitStoreState extends State<VisitStore> {
                                 Flexible(
                                   child: Text(
                                     data['storename'].toUpperCase(),
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Colors.white),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -160,10 +162,10 @@ class _VisitStoreState extends State<VisitStore> {
                                                     data: data,
                                                   )));
                                     },
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
-                                      children: const [
+                                      children: [
                                         Text('Edit'),
                                         Icon(
                                           Icons.edit_outlined,

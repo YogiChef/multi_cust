@@ -108,13 +108,13 @@ class _CartPageState extends State<CartPage> {
                             const Text(
                               'Total:  ',
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              total.toStringAsFixed(2),
+                              total.toStringAsFixed(0),
                               style: const TextStyle(
-                                letterSpacing: 1.5,
-                                fontSize: 20,
+                                letterSpacing: 1,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.deepOrange,
                               ),
@@ -144,9 +144,9 @@ class _CartPageState extends State<CartPage> {
                                         LoginDialog.showLoginDialog(context);
                                       },
                             child: Text(
-                              'check out'.toUpperCase(),
+                              'checkouts'.toUpperCase(),
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 12,
                                 color: Colors.white,
                               ),
                             ),
@@ -175,28 +175,26 @@ class EmptyCart extends StatelessWidget {
         children: [
           const Text(
             'Your Cart Is Empty !',
+            maxLines: 2,
             style: TextStyle(
                 color: Colors.deepOrange,
-                fontSize: 36,
+                fontSize: 30,
                 fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 50,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80),
-            child: TealButton(
-              width: 200,
-              name: 'Continue Shopping',
-              txtColor: Colors.white,
-              color: Colors.teal,
-              press: () {
-                Navigator.canPop(context)
-                    ? Navigator.pop(context)
-                    : Navigator.pushReplacementNamed(
-                        context, ('customer_home'));
-              },
-            ),
+          TealButton(
+            width: 0.8,
+            name: 'Continue Shopping',
+            txtColor: Colors.white,
+            color: Colors.teal,
+            fontSize: 12,
+            press: () {
+              Navigator.canPop(context)
+                  ? Navigator.pop(context)
+                  : Navigator.pushReplacementNamed(context, ('customer_home'));
+            },
           )
         ],
       ),

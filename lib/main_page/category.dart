@@ -84,7 +84,7 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Column(
           children: [
             const SizedBox(
-              height: 60,
+              height: 40,
             ),
             const SearchWidget(),
             const SizedBox(
@@ -104,7 +104,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget sideNavigator(Size size) {
     return SizedBox(
-      height: size.height * 0.03,
+      height: size.height * 0.05,
       width: size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -143,7 +143,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget categView(Size size) {
     return Container(
-      height: size.height * 0.72,
+      height: size.height * 0.78,
       width: size.width,
       color: Colors.white10,
       child: PageView(

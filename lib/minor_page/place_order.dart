@@ -102,6 +102,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                       'set your address',
                                       style: GoogleFonts.acme(
                                           color: Colors.red,
+                                          height: 1,
                                           fontSize: 24,
                                           decoration: TextDecoration.underline,
                                           decorationThickness: 2),
@@ -146,10 +147,18 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Name: ${customer['firstname']}  ${customer['lastname']} ',
-                                              style: const TextStyle(height: 2),
-                                            ),
-                                            Text("Tel: ${customer['phone']}")
+                                                'Name: ${customer['firstname']}  ${customer['lastname']} ',
+                                                style: const TextStyle(
+                                                    fontSize: 12,
+                                                    height: 1.5,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            Text(
+                                              "Tel: ${customer['phone']}",
+                                              style: const TextStyle(
+                                                  fontSize: 10, height: 1.2),
+                                            )
                                           ],
                                         ),
                                         subtitle: Column(
@@ -157,11 +166,13 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'city/state: ${customer['city']}  ${customer['state']} ',
-                                              style: const TextStyle(height: 2),
-                                            ),
+                                                'city/state: ${customer['city']}  ${customer['state']} ',
+                                                style: const TextStyle(
+                                                    fontSize: 10, height: 1.2)),
                                             Text(
-                                                "country:  ${customer['country']},  ${customer['zipcode']}")
+                                                "country:  ${customer['country']},  ${customer['zipcode']}",
+                                                style: const TextStyle(
+                                                    fontSize: 10, height: 1.2))
                                           ],
                                         ),
                                       );
@@ -221,9 +232,10 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: const TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.grey,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    height: 1,
+                                                    color: Colors.black,
                                                   ),
                                                 ),
                                                 Row(
@@ -234,17 +246,18 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                                     Row(children: [
                                                       Text(
                                                         order.price
-                                                            .toStringAsFixed(2),
+                                                            .toStringAsFixed(0),
                                                         style: const TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Colors.red),
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.red,
+                                                        ),
                                                       ),
                                                       Text(
                                                         ' x ${order.qty.toString()} ',
                                                         style: const TextStyle(
-                                                            fontSize: 14,
+                                                            fontSize: 12,
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                             color: Colors.red),
@@ -256,12 +269,11 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                                           '${order.qty * order.price.floor()}',
                                                           style:
                                                               const TextStyle(
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Colors
-                                                                      .red),
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Colors.red,
+                                                          ),
                                                         ),
                                                       ],
                                                     )
@@ -282,15 +294,14 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                   ),
                 ),
                 bottomSheet: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 3),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: TealButton(
-                    width: 1,
+                    width: 0.8,
                     name: snapshot.data!.docs.isEmpty
                         ? 'Add New Address'
                         : 'Confirm  ${totalPrice.toStringAsFixed(2)} BAHT',
                     txtColor: Colors.white,
-                    fontSize: 16,
+                    fontSize: 12,
                     press: snapshot.data!.docs.isEmpty
                         ? () {
                             Navigator.push(

@@ -22,14 +22,14 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.teal),
             borderRadius: BorderRadius.circular(5)),
         child: ExpansionTile(
           title: Container(
-            constraints: const BoxConstraints(maxHeight: 80),
+            constraints: const BoxConstraints(maxHeight: 70),
             width: double.infinity,
             child: Row(
               children: [
@@ -38,8 +38,8 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                     right: 12,
                   ),
                   child: Container(
-                    height: 70,
-                    width: 80,
+                    height: 90,
+                    width: 90,
                     constraints:
                         const BoxConstraints(maxHeight: 80, maxWidth: 80),
                     child: Image.network(
@@ -51,28 +51,44 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                 Flexible(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       widget.order['ordername'],
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          color: Colors.black,
+                          height: 1),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                    Text.rich(
+                      TextSpan(
+                          text:
+                              '฿ ${widget.order['orderprice'] / widget.order['orderqty']}',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10,
+                              color: Colors.black,
+                              height: 1),
                           children: [
-                            Text(
-                                '฿ ${widget.order['orderprice'] / widget.order['orderqty']}'),
-                            Text(' x  ${widget.order['orderqty'].toString()}')
-                          ],
-                        ),
-                        Text(
-                            '฿ ${widget.order['orderprice'].toStringAsFixed(2)}')
-                      ],
-                    )
+                            TextSpan(
+                                text:
+                                    ' x  ${widget.order['orderqty'].toString()}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 10,
+                                    color: Colors.black,
+                                    height: 1))
+                          ]),
+                    ),
+                    Text('฿ ${widget.order['orderprice'].toStringAsFixed(2)}',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10,
+                            color: Colors.black,
+                            height: 1))
                   ],
                 ))
               ],
@@ -111,17 +127,43 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Name: ${widget.order['custname']} '),
-                    Text('Tel.: ${widget.order['phone']}'),
-                    Text('Email: ${widget.order['email']}'),
-                    Text('Address: ${widget.order['address']}'),
+                    Text(
+                      'Name: ${widget.order['custname']} ',
+                      style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      'Tel.: ${widget.order['phone']}',
+                      style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      'Email: ${widget.order['email']}',
+                      style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      'Address: ${widget.order['address']}',
+                      style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
                     Row(
                       children: [
-                        const Text('payment status: '),
+                        const Text('payment status: ',
+                            style: TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold)),
                         Text(
                           widget.order['paymenystatus'],
                           style: const TextStyle(
-                              color: Colors.purple, fontSize: 16),
+                              color: Colors.purple, fontSize: 14),
                         ),
                       ],
                     ),
@@ -132,7 +174,7 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                           widget.order['deliverystatus'],
                           style: const TextStyle(
                             color: Colors.teal,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -146,7 +188,7 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                                     .toString(),
                             style: const TextStyle(
                               color: Colors.blue,
-                              fontSize: 16,
+                              fontSize: 14,
                             ),
                           )
                         : const Text(''),
@@ -247,12 +289,17 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                                                                       'proid'])
                                                                   .collection(
                                                                       'reviews');
-                                                          String docId = context.read<IdProvider>().getData;            
+                                                          String docId = context
+                                                              .read<
+                                                                  IdProvider>()
+                                                              .getData;
                                                           await collRf
                                                               .doc(docId)
                                                               .set({
-                                                                'cid': docId,
-                                                                'orderid': widget.order['orderid'],
+                                                            'cid': docId,
+                                                            'orderid':
+                                                                widget.order[
+                                                                    'orderid'],
                                                             'name':
                                                                 widget.order[
                                                                     'custname'],

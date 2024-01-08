@@ -110,10 +110,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                   height: 200,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                    Colors.red.shade900,
-                    Colors.blueGrey.shade100
-                  ])),
+                      gradient: LinearGradient(
+                          colors: [Colors.red.shade900, Colors.teal.shade100])),
                 ),
                 CustomScrollView(
                   slivers: [
@@ -141,8 +139,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               background: Container(
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(colors: [
-                                  Colors.red.shade900,
-                                  Colors.white
+                                  Colors.blue.shade900,
+                                  Colors.purple.shade100
                                 ])),
                                 child: Padding(
                                   padding:
@@ -162,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 25),
+                                              const EdgeInsets.only(left: 12),
                                           child: Text(
                                             data['name'] == ''
                                                 ? 'guest'.toUpperCase()
@@ -170,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: const TextStyle(
-                                                fontSize: 24,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.w600,
                                                 color: Colors.yellowAccent),
                                           ),
@@ -208,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           'Cart',
                                           style: GoogleFonts.acme(
                                               color: Colors.white,
-                                              fontSize: 20),
+                                              fontSize: 14),
                                         ),
                                       ),
                                     ),
@@ -239,7 +237,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           'Orders',
                                           style: GoogleFonts.acme(
                                               color: Colors.white,
-                                              fontSize: 20),
+                                              fontSize: 14),
                                         ),
                                       ),
                                     ),
@@ -268,7 +266,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           'Wishlist',
                                           style: GoogleFonts.acme(
                                               color: Colors.white,
-                                              fontSize: 20),
+                                              fontSize: 14),
                                         ),
                                       ),
                                     ),
@@ -767,8 +765,15 @@ class RepeatedListTile extends StatelessWidget {
     return InkWell(
       onTap: press,
       child: ListTile(
-        title: Text(title),
-        subtitle: Text(subTitle),
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 14),
+        ),
+        subtitle: Text(
+          subTitle,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontSize: 12),
+        ),
         leading: Icon(icon),
       ),
     );
@@ -800,7 +805,7 @@ class ProfileHeaderLabel extends StatelessWidget {
           Text(
             headerLabel,
             style: const TextStyle(
-                color: Colors.grey, fontSize: 24, fontWeight: FontWeight.bold),
+                color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 40,

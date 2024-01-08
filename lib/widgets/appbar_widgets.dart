@@ -39,7 +39,7 @@ class AppbarTitle extends StatelessWidget {
       title,
       style: GoogleFonts.acme(
         color: Colors.black,
-        fontSize: 28,
+        fontSize: 20,
       ),
     );
   }
@@ -74,7 +74,7 @@ class SearchIputWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
       child: SizedBox(
-        height: 35,
+        height: 40,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(7),
           child: TextField(
@@ -83,7 +83,8 @@ class SearchIputWidget extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const SearchPage()));
             },
             decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                 fillColor: Colors.grey.withOpacity(0.2),
                 filled: true,
                 hintText: 'Search For Products',
@@ -109,14 +110,14 @@ class SearchWidget extends StatelessWidget {
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.8,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
         decoration: BoxDecoration(
             border: Border.all(
               color: Colors.blueGrey,
             ),
             borderRadius: BorderRadius.circular(30)),
-        child: Row(
-          children: const [
+        child: const Row(
+          children: [
             Icon(
               Icons.search,
               size: 24,

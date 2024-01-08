@@ -22,13 +22,13 @@ class BeautyCategory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CategHeaderLabel(
-                    headerLabel: 'Beauty',
-                  ),
+                  // const CategHeaderLabel(
+                  //   headerLabel: 'Beauty',
+                  // ),
                   SizedBox(
                     height: size.height * 0.68,
                     child: GridView.count(
-                      mainAxisSpacing: 60,
+                      mainAxisSpacing: 20,
                       crossAxisSpacing: 5,
                       crossAxisCount: 2,
                       children: List.generate(

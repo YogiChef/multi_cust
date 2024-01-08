@@ -28,7 +28,7 @@ class AccessoriesCategory extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.68,
                     child: GridView.count(
-                      mainAxisSpacing: 60,
+                      mainAxisSpacing: 20,
                       crossAxisSpacing: 5,
                       crossAxisCount: 3,
                       children: List.generate(

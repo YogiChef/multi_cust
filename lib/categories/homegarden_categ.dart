@@ -22,13 +22,13 @@ class HomeGardenCategory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CategHeaderLabel(
-                    headerLabel: 'Home and Garden',
-                  ),
+                  // const CategHeaderLabel(
+                  //   headerLabel: 'Home and Garden',
+                  // ),
                   SizedBox(
                     height: size.height * 0.68,
                     child: GridView.count(
-                      mainAxisSpacing: 60,
+                      mainAxisSpacing: 20,
                       crossAxisSpacing: 5,
                       crossAxisCount: 3,
                       children: List.generate(

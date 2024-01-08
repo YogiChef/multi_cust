@@ -101,10 +101,9 @@ class _ProductModelState extends State<ProductModel> {
                                     child: Text(
                                       'out of stock',
                                       style: GoogleFonts.righteous(
-                                          fontSize: 20,
-                                          color: Colors.red,
-                                          backgroundColor:
-                                              Colors.yellow.shade200),
+                                        fontSize: 14,
+                                        color: Colors.red,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -132,9 +131,7 @@ class _ProductModelState extends State<ProductModel> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14,
-                          ),
+                              color: Colors.grey, fontSize: 14, height: 1),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,11 +141,11 @@ class _ProductModelState extends State<ProductModel> {
                                 Text(
                                   '฿' +
                                       widget.product['price']
-                                          .toStringAsFixed(2),
+                                          .toStringAsFixed(0),
                                   style: onSale != 0
                                       ? const TextStyle(
                                           color: Colors.black45,
-                                          fontSize: 14,
+                                          fontSize: 12,
                                           decoration:
                                               TextDecoration.lineThrough,
                                           decorationThickness: 1.5,
@@ -156,7 +153,7 @@ class _ProductModelState extends State<ProductModel> {
                                         )
                                       : TextStyle(
                                           color: Colors.red.shade600,
-                                          fontSize: 16,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w500,
                                         ),
                                 ),
@@ -168,10 +165,10 @@ class _ProductModelState extends State<ProductModel> {
                                         '฿' +
                                             ((1 - (onSale / 100)) *
                                                     widget.product['price'])
-                                                .toStringAsFixed(2),
+                                                .toStringAsFixed(1),
                                         style: TextStyle(
                                           color: Colors.red.shade600,
-                                          fontSize: 16,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -193,6 +190,7 @@ class _ProductModelState extends State<ProductModel> {
                         top: 30,
                         left: 0,
                         child: Container(
+                          alignment: const Alignment(0, 0),
                           height: 25,
                           width: 80,
                           decoration: BoxDecoration(
@@ -200,13 +198,12 @@ class _ProductModelState extends State<ProductModel> {
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(15),
                                   bottomRight: Radius.circular(15))),
-                          child: Center(
-                            child: Text(
-                              'Save ${onSale.toString()} %',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          child: Text(
+                            'Save ${onSale.toString()} %',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

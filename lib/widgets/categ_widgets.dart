@@ -17,7 +17,7 @@ class SliderBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: size.height * 0.82,
+      height: size.height * 82,
       width: size.width * 0.05,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40),
@@ -90,8 +90,8 @@ class SubcategModel extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 100,
-            width: 120,
+            height: 70,
+            width: 80,
             child: Image(
               image: AssetImage(assetName),
               fit: BoxFit.cover,

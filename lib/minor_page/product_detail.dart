@@ -149,7 +149,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           widget.prolist['proname'],
                           style: TextStyle(
                             color: Colors.grey.shade600,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -161,7 +161,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                 Text('฿ ',
                                     style: TextStyle(
                                         color: Colors.red.shade600,
-                                        fontSize: 20,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w500)),
                                 Text(
                                   widget.prolist['price'].toString(),
@@ -176,7 +176,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                         )
                                       : TextStyle(
                                           color: Colors.red.shade600,
-                                          fontSize: 20,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                 ),
@@ -190,7 +190,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                             .toStringAsFixed(2),
                                         style: TextStyle(
                                           color: Colors.red.shade600,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -255,14 +255,11 @@ class _ProductDetailState extends State<ProductDetail> {
                             : Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.green[200],
-                                    child: Text(
-                                      widget.prolist['instock'].toString(),
-                                      style: TextStyle(
-                                        color: Colors.red[900],
-                                        fontSize: 22,
-                                      ),
+                                  Text(
+                                    widget.prolist['instock'].toString(),
+                                    style: TextStyle(
+                                      color: Colors.red[900],
+                                      fontSize: 22,
                                     ),
                                   ),
                                   const SizedBox(
@@ -272,18 +269,18 @@ class _ProductDetailState extends State<ProductDetail> {
                                     'Pieces available in storck',
                                     style: TextStyle(
                                       color: Colors.blueGrey,
-                                      fontSize: 18,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ],
                               ),
                         const ProDetailsHeader(
-                          label: "   Item Description  ",
+                          label: " Item Description ",
                         ),
                         Text(
                           widget.prolist['prodesc'],
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 13,
                             fontWeight: FontWeight.w600,
                             color: Colors.blueGrey.shade800,
                           ),
@@ -434,6 +431,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                     ? Colors.grey.shade300
                                     : Colors.deepOrange,
                                 txtColor: Colors.white,
+                                fontSize: 12,                              
                                 press: documentId != null
                                     ? () {
                                         if (widget.prolist['instock'] == 0) {
@@ -574,7 +572,7 @@ class ProDetailsHeader extends StatelessWidget {
         children: [
           SizedBox(
             height: 40,
-            width: 50,
+            width: 30,
             child: Divider(
               color: Colors.yellow.shade900,
               thickness: 1,
@@ -584,12 +582,12 @@ class ProDetailsHeader extends StatelessWidget {
             label,
             style: TextStyle(
                 color: Colors.yellow.shade900,
-                fontSize: 24,
+                fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 40,
-            width: 50,
+            width: 30,
             child: Divider(color: Colors.yellow.shade900),
           ),
         ],

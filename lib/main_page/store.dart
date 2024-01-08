@@ -54,9 +54,11 @@ class _StoresPageState extends State<StoresPage> {
               if (snapshot.hasData) {
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    // childAspectRatio: 0.8,
                     crossAxisCount: 3,
-                    mainAxisSpacing: 25,
-                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 10,
+                    mainAxisExtent: 105,
                   ),
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -74,38 +76,36 @@ class _StoresPageState extends State<StoresPage> {
                           : () {
                               LoginDialog.showLoginDialog(context);
                             },
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 90,
-                              width: 95,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(
                                     width: 4,
                                     color: Colors.pinkAccent.withOpacity(0.5),
                                   ),
-                                  borderRadius: BorderRadius.circular(25)),
+                                  borderRadius: BorderRadius.circular(15)),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
                                   snapshot.data!.docs[index]['storelogo'],
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Text(
-                              snapshot.data!.docs[index]['storename']
-                                  .toLowerCase(),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.acme(
-                                  fontSize: 20,
-                                  letterSpacing: 1.5,
-                                  color: Colors.blueGrey.shade900),
-                            ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            snapshot.data!.docs[index]['storename']
+                                .toLowerCase(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.acme(
+                                fontSize: 12,
+                                letterSpacing: 1,
+                                color: Colors.blueGrey.shade900),
+                          ),
+                        ],
                       ),
                     );
                   },

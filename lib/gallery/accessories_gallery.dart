@@ -51,19 +51,27 @@ class _AccessoriesGalleryState extends State<AccessoriesGallery> {
         }
 
         return SingleChildScrollView(
-          child: StaggeredGridView.countBuilder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: snapshot.data!.docs.length,
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              itemBuilder: (context, index) {
-                return ProductModel(
-                  product: snapshot.data!.docs[index],
-                );
-              },
-              staggeredTileBuilder: (context) => const StaggeredTile.fit(1)),
+          child: Column(
+            children: [
+              StaggeredGridView.countBuilder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.docs.length,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  itemBuilder: (context, index) {
+                    return ProductModel(
+                      product: snapshot.data!.docs[index],
+                    );
+                  },
+                  staggeredTileBuilder: (context) =>
+                      const StaggeredTile.fit(1)),
+              const SizedBox(
+                height: 180,
+              )
+            ],
+          ),
         );
         //     ListView(
         //       children: snapshot.data!.docs.map((DocumentSnapshot document) {

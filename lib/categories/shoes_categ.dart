@@ -29,7 +29,7 @@ class ShoesCategory extends StatelessWidget {
                     height: size.height * 0.68,
                     child: GridView.count(
                       mainAxisSpacing: 20,
-                      crossAxisSpacing: 10,
+                      crossAxisSpacing: 5,
                       crossAxisCount: 3,
                       children: List.generate(
                         shoes.length - 1,

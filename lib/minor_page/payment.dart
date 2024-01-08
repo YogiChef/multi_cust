@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -81,11 +81,11 @@ class _PaymentPageState extends State<PaymentPage> {
               body: Material(
                 child: SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
+                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 60),
                     child: Column(
                       children: [
                         Container(
-                          height: 90,
+                          height: 120,
                           width: double.infinity,
                           decoration: BoxDecoration(
                               color: Colors.transparent,
@@ -104,13 +104,17 @@ class _PaymentPageState extends State<PaymentPage> {
                                     const Text(
                                       'Total',
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
                                       '${totalPrice.toStringAsFixed(2)} BAHT',
                                       style: const TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
@@ -126,13 +130,17 @@ class _PaymentPageState extends State<PaymentPage> {
                                     const Text(
                                       'Total Order',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
                                       '${totalPriad.toStringAsFixed(2)} ฺฺBAHT',
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
@@ -144,13 +152,17 @@ class _PaymentPageState extends State<PaymentPage> {
                                     const Text(
                                       'Shipping Coast',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
                                       '${sippCoast.toStringAsFixed(2)} BAHT',
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
@@ -182,7 +194,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                     title: Text(
                                       'Cash On Delivery',
                                       style: TextStyle(
-                                          fontSize: selected == 1 ? 16 : 14,
+                                          fontSize: selected == 1 ? 12 : 10,
                                           color: selected == 1
                                               ? Colors.teal
                                               : Colors.grey),
@@ -190,7 +202,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                     subtitle: Text(
                                       'Pay Cash At Home',
                                       style: TextStyle(
-                                          fontSize: selected == 1 ? 16 : 14,
+                                          fontSize: selected == 1 ? 12 : 10,
                                           color: selected == 1
                                               ? Colors.teal
                                               : Colors.grey),
@@ -207,7 +219,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                     title: Text(
                                       'Pay via visa / Master card',
                                       style: TextStyle(
-                                          fontSize: selected == 2 ? 16 : 14,
+                                          fontSize: selected == 2 ? 12 : 10,
                                           color: selected == 2
                                               ? Colors.teal
                                               : Colors.grey),
@@ -246,7 +258,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                     title: Text(
                                       'Pay via Paypal',
                                       style: TextStyle(
-                                          fontSize: selected == 3 ? 16 : 14,
+                                          fontSize: selected == 3 ? 12 : 10,
                                           color: selected == 3
                                               ? Colors.teal
                                               : Colors.grey),
@@ -282,13 +294,12 @@ class _PaymentPageState extends State<PaymentPage> {
                 ),
               ),
               bottomSheet: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: TealButton(
-                  width: 1,
+                  width: 0.8,
                   name: 'Confirm  ${totalPrice.toStringAsFixed(2)} BAHT',
                   txtColor: Colors.white,
-                  fontSize: 16,
+                  fontSize: 12,
                   press: () async {
                     if (selected == 1) {
                       showModalBottomSheet(
@@ -296,24 +307,36 @@ class _PaymentPageState extends State<PaymentPage> {
                           builder: (context) => SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.3,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 100),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.only(
+                                    top: 20,
+                                  ),
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text(
-                                        'Pay At Home ${totalPrice.toStringAsFixed(2)} ฿',
-                                        style: const TextStyle(
-                                          fontSize: 24,
+                                      const Text(
+                                        'Pay At Home ',
+                                        style: TextStyle(
+                                          height: .2,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
+                                      Text(
+                                        '${totalPrice.toStringAsFixed(2)} ฿',
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            height: 1,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                       TealButton(
-                                        width: 0.9,
+                                        width: 0.8,
                                         name:
                                             'Confirm ${totalPrice.toStringAsFixed(2)} ฿',
                                         txtColor: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 12,
                                         press: () async {
                                           showprogress();
                                           for (var item in context

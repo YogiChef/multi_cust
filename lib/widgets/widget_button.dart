@@ -30,7 +30,10 @@ class TealButton extends StatelessWidget {
           onPressed: press,
           child: Text(
             name.toUpperCase(),
-            style: TextStyle(color: txtColor, fontSize: fontSize),
+            style: TextStyle(
+                color: txtColor,
+                fontSize: fontSize,
+                fontWeight: FontWeight.w600),
           ),
         ));
   }

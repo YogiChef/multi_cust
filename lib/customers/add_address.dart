@@ -42,7 +42,7 @@ class _AddAddressState extends State<AddAddress> {
           centerTitle: true,
           leading: const AppBarBackButton(),
           title: const AppbarTitle(
-            title: 'Add Address',
+            title: 'Add New Address',
           ),
         ),
         body: SafeArea(

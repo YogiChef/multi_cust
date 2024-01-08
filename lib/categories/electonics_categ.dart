@@ -22,14 +22,14 @@ class ElectronicsCategory extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CategHeaderLabel(
-                    headerLabel: 'electronics',
-                  ),
+                  // const CategHeaderLabel(
+                  //   headerLabel: 'electronics',
+                  // ),
                   SizedBox(
                     height: size.height * 0.68,
                     child: GridView.count(
                       mainAxisSpacing: 20,
-                      crossAxisSpacing: 10,
+                      crossAxisSpacing: 5,
                       crossAxisCount: 3,
                       children: List.generate(
                         electronics.length - 1,
@@ -42,7 +42,6 @@ class ElectronicsCategory extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
                 ],
               ),
             ),

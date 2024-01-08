@@ -30,7 +30,7 @@ class WomenCategory extends StatelessWidget {
                     child: SizedBox(
                       height: size.height * 0.7,
                       child: GridView.count(
-                        mainAxisSpacing: 10,
+                        mainAxisSpacing: 20,
                         crossAxisSpacing: 5,
                         crossAxisCount: 3,
                         children: List.generate(

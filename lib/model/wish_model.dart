@@ -24,8 +24,8 @@ class WishlistModel extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                height: 90,
-                width: 110,
+                height: 70,
+                width: 90,
                 child: Image.network(
                   product.imagesUrl,
                   fit: BoxFit.cover,
@@ -33,18 +33,20 @@ class WishlistModel extends StatelessWidget {
               ),
               Flexible(
                   child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 8, left: 12, bottom: 0, right: 8),
+                padding: const EdgeInsets.only(left: 12, right: 8),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      product.name.toUpperCase(),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey.shade700,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        product.name.toUpperCase(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey.shade700,
+                        ),
                       ),
                     ),
                     Row(
@@ -53,7 +55,7 @@ class WishlistModel extends StatelessWidget {
                         Text(
                           product.price.toString(),
                           style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: Colors.red),
                         ),

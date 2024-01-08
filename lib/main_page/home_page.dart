@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:hub/gallery/accessories_gallery.dart';
 import 'package:hub/gallery/bags_gallery.dart';
 import 'package:hub/gallery/beauty_gallery.dart';
@@ -9,6 +8,7 @@ import 'package:hub/gallery/kids_gallery.dart';
 import 'package:hub/gallery/men_gallery.dart';
 import 'package:hub/gallery/shoes_gallery.dart';
 import 'package:hub/gallery/women_gallery.dart';
+import 'package:hub/widgets/appbar_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,119 +27,89 @@ class _HomePageState extends State<HomePage> {
         slivers: [
           SliverList(
               delegate: SliverChildListDelegate([
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'search');
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.77,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 8),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.blueGrey,
-                          ),
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            IconlyLight.search,
-                            size: 20,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Search',
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ],
+            Column(
+              children: [
+                const SearchWidget(),
+                Container(
+                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 12),
+                  child: const TabBar(
+                    labelPadding: EdgeInsets.only(right: 20),
+                    isScrollable: true,
+                    tabAlignment: TabAlignment.start,
+                    indicatorColor: Colors.teal,
+                    labelColor: Colors.teal,
+                    indicatorWeight: 4,
+                    dividerHeight: 0,
+                    unselectedLabelColor: Colors.grey,
+                    unselectedLabelStyle: TextStyle(
+                      fontSize: 12,
+                    ),
+                    tabs: [
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Men',
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 0),
-                    child: const TabBar(
-                      isScrollable: true,
-                      indicatorColor: Colors.teal,
-                      labelColor: Colors.teal,
-                      indicatorWeight: 4,
-                      unselectedLabelColor: Colors.grey,
-                      unselectedLabelStyle: TextStyle(
-                        fontSize: 12,
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Women',
+                        ),
                       ),
-                      tabs: [
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Men',
-                          ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Shoes',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Women',
-                          ),
+                      ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Electronics',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Shoes',
-                          ),
+                      ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Accessories',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Electronics',
-                          ),
+                      ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Home & Garden',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Accessories',
-                          ),
+                      ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Beauty',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Home & Garden',
-                          ),
+                      ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Kids',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Beauty',
-                          ),
+                      ),
+                      Tab(
+                        child: RepeatedTab(
+                          label: 'Bage',
                         ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Kids',
-                          ),
-                        ),
-                        Tab(
-                          child: RepeatedTab(
-                            label: 'Bage',
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: const TabBarView(
-                      children: [
-                        MenGallery(),
-                        WomenGallery(),
-                        ShoesGallery(),
-                        ElectronicGallery(),
-                        AccessoriesGallery(),
-                        HomeAndGardenGallery(),
-                        BeautyGallery(),
-                        KidsGallery(),
-                        BagsGallery(),
-                      ],
-                    ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: const TabBarView(
+                    children: [
+                      MenGallery(),
+                      WomenGallery(),
+                      ShoesGallery(),
+                      ElectronicGallery(),
+                      AccessoriesGallery(),
+                      HomeAndGardenGallery(),
+                      BeautyGallery(),
+                      KidsGallery(),
+                      BagsGallery(),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             )
           ]))
         ],
@@ -257,6 +227,8 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 }
+
+
 
 class RepeatedTab extends StatelessWidget {
   const RepeatedTab({
