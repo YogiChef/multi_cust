@@ -169,35 +169,34 @@ class EmptyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Your Cart Is Empty !',
-            maxLines: 2,
-            style: TextStyle(
-                color: Colors.deepOrange,
-                fontSize: 30,
-                fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          TealButton(
-            width: 0.8,
-            name: 'Continue Shopping',
-            txtColor: Colors.white,
-            color: Colors.teal,
-            fontSize: 12,
-            press: () {
-              Navigator.canPop(context)
-                  ? Navigator.pop(context)
-                  : Navigator.pushReplacementNamed(context, ('customer_home'));
-            },
-          )
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Your Cart Is Empty !',
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          style: TextStyle(
+              color: Colors.deepOrange,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(
+          height: 50,
+        ),
+        TealButton(
+          width: 0.8,
+          name: 'Continue Shopping',
+          txtColor: Colors.white,
+          color: Colors.teal,
+          fontSize: 12,
+          press: () {
+            Navigator.canPop(context)
+                ? Navigator.pop(context)
+                : Navigator.pushReplacementNamed(context, ('customer_home'));
+          },
+        )
+      ],
     );
   }
 

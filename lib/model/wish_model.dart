@@ -17,10 +17,10 @@ class WishlistModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Card(
         child: SizedBox(
-          height: 90,
+          height: 95,
           child: Row(
             children: [
               SizedBox(
@@ -33,7 +33,7 @@ class WishlistModel extends StatelessWidget {
               ),
               Flexible(
                   child: Padding(
-                padding: const EdgeInsets.only(left: 12, right: 8),
+                padding: const EdgeInsets.only(left: 12, right: 8, top: 8),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -44,9 +44,9 @@ class WishlistModel extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey.shade700,
-                        ),
+                            fontSize: 12,
+                            color: Colors.grey.shade700,
+                            height: 1),
                       ),
                     ),
                     Row(
@@ -57,6 +57,7 @@ class WishlistModel extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
+                              height: 1,
                               color: Colors.red),
                         ),
                         Row(

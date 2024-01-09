@@ -37,11 +37,11 @@ class CustomerOrders extends StatelessWidget {
           if (snapshot.data!.docs.isEmpty) {
             return Center(
               child: Text(
-                'You have not \n\n active orders !',
+                'You have no active orders !',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.acme(
-                  color: Colors.blueGrey,
-                  fontSize: 26,
+                  color: Colors.red,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),

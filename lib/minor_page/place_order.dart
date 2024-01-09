@@ -147,7 +147,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                                'Name: ${customer['firstname']}  ${customer['lastname']} ',
+                                                '${customer['firstname']}  ${customer['lastname']} ',
                                                 style: const TextStyle(
                                                     fontSize: 12,
                                                     height: 1.5,

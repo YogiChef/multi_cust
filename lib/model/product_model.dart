@@ -131,50 +131,42 @@ class _ProductModelState extends State<ProductModel> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                              color: Colors.grey, fontSize: 14, height: 1),
+                              color: Colors.grey, fontSize: 13, height: 1),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  '฿' +
-                                      widget.product['price']
-                                          .toStringAsFixed(0),
-                                  style: onSale != 0
-                                      ? const TextStyle(
-                                          color: Colors.black45,
-                                          fontSize: 12,
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          decorationThickness: 1.5,
-                                          fontWeight: FontWeight.w500,
-                                        )
-                                      : TextStyle(
-                                          color: Colors.red.shade600,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                onSale != 0
-                                    ? Text(
-                                        '฿' +
-                                            ((1 - (onSale / 100)) *
-                                                    widget.product['price'])
-                                                .toStringAsFixed(1),
-                                        style: TextStyle(
-                                          color: Colors.red.shade600,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    : const Text(''),
-                              ],
+                            Text(
+                              '฿' + widget.product['price'].toStringAsFixed(1),
+                              style: onSale != 0
+                                  ? const TextStyle(
+                                      color: Colors.black45,
+                                      fontSize: 10,
+                                      decoration: TextDecoration.lineThrough,
+                                      decorationThickness: 1.5,
+                                      fontWeight: FontWeight.w500,
+                                    )
+                                  : TextStyle(
+                                      color: Colors.red.shade600,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                             ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            onSale != 0
+                                ? Text(
+                                    '฿' +
+                                        ((1 - (onSale / 100)) *
+                                                widget.product['price'])
+                                            .toStringAsFixed(1),
+                                    style: TextStyle(
+                                      color: Colors.red.shade600,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                : const Text(''),
                           ],
                         ),
                       ],
@@ -200,6 +192,7 @@ class _ProductModelState extends State<ProductModel> {
                                   bottomRight: Radius.circular(15))),
                           child: Text(
                             'Save ${onSale.toString()} %',
+                            textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 10,

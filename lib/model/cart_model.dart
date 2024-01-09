@@ -22,7 +22,7 @@ class CartModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Card(
         child: SizedBox(
           height: 90,
@@ -81,17 +81,19 @@ class CartModel extends StatelessWidget {
                                             builder: (context) =>
                                                 CupertinoActionSheet(
                                                   title: const Text(
-                                                    'Remove Item',
+                                                    'Are you sure to remove this item ?.',
                                                     style: TextStyle(
-                                                        fontSize: 18,
-                                                        color: Colors.teal),
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.red),
                                                   ),
-                                                  message: const Text(
-                                                      'Are you sure to remove this item ?.',
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors
-                                                              .deepOrange)),
+                                                  // message: const Text(
+                                                  //     'Are you sure to remove this item ?.',
+                                                  //     style: TextStyle(
+                                                  //         fontSize: 14,
+                                                  //         color: Colors
+                                                  //             .deepOrange)),
                                                   actions: <CupertinoActionSheetAction>[
                                                     CupertinoActionSheetAction(
                                                         onPressed: () async {
@@ -138,7 +140,7 @@ class CartModel extends StatelessWidget {
                                                         child: const Text(
                                                             'Move to wishlist',
                                                             style: TextStyle(
-                                                                fontSize: 18,
+                                                                fontSize: 16,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
@@ -157,8 +159,8 @@ class CartModel extends StatelessWidget {
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 20),
+                                                                FontWeight.w600,
+                                                            fontSize: 16),
                                                       ),
                                                     ),
                                                     CupertinoActionSheetAction(
@@ -173,8 +175,8 @@ class CartModel extends StatelessWidget {
                                                                   Colors.teal,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w400,
-                                                              fontSize: 20),
+                                                                      .w600,
+                                                              fontSize: 16),
                                                         ))
                                                   ],
                                                 ));

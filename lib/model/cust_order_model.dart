@@ -21,13 +21,15 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
   late String comment;
   @override
   Widget build(BuildContext context) {
+    var price = widget.order['orderprice'] / widget.order['orderqty'];
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.teal),
             borderRadius: BorderRadius.circular(5)),
         child: ExpansionTile(
+          tilePadding: const EdgeInsets.only(left: 6, right: 6),
           title: Container(
             constraints: const BoxConstraints(maxHeight: 70),
             width: double.infinity,
@@ -65,8 +67,7 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                     ),
                     Text.rich(
                       TextSpan(
-                          text:
-                              '฿ ${widget.order['orderprice'] / widget.order['orderqty']}',
+                          text: '฿ ${price.toStringAsFixed(2)}',
                           style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 10,
@@ -163,18 +164,18 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                         Text(
                           widget.order['paymenystatus'],
                           style: const TextStyle(
-                              color: Colors.purple, fontSize: 14),
+                              color: Colors.purple, fontSize: 13),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        const Text('delivery status:  '),
+                        const Text('delivery status: '),
                         Text(
                           widget.order['deliverystatus'],
                           style: const TextStyle(
                             color: Colors.teal,
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -188,7 +189,7 @@ class _CustomerOrderModelState extends State<CustomerOrderModel> {
                                     .toString(),
                             style: const TextStyle(
                               color: Colors.blue,
-                              fontSize: 14,
+                              fontSize: 13,
                             ),
                           )
                         : const Text(''),

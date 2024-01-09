@@ -108,46 +108,72 @@ class _AddressBookState extends State<AddressBook> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color: customer['default'] == true
-                                      ? Colors.teal.shade100
-                                      : Colors.grey.shade200,
-                                  child: ListTile(
-                                    trailing: customer['default'] == true
-                                        ? IconButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            icon: const Icon(
-                                              Icons.home,
-                                              color: Colors.deepOrange,
+                                child: Stack(
+                                  children: [
+                                    Card(
+                                      color: customer['default'] == true
+                                          ? Colors.teal.shade100
+                                          : Colors.grey.shade200,
+                                      child: ListTile(
+                                        title: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '${customer['firstname']}  ${customer['lastname']} ',
+                                              style: const TextStyle(
+                                                  height: 1.5,
+                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
                                             ),
-                                          )
-                                        : const SizedBox(),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${customer['firstname']}  ${customer['lastname']} ',
-                                          style: const TextStyle(height: 2),
+                                            Text(
+                                              "${customer['phone']}",
+                                              style: const TextStyle(
+                                                  height: 1.2,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600),
+                                            )
+                                          ],
                                         ),
-                                        Text("${customer['phone']}")
-                                      ],
-                                    ),
-                                    subtitle: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'city/state: ${customer['city']}  ${customer['state']} ',
-                                          style: const TextStyle(height: 2),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                'city/state: ${customer['city']}  ${customer['state']} ',
+                                                style: const TextStyle(
+                                                    height: 1.2,
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                            Text(
+                                              "country:  ${customer['country']}  ${customer['zipcode']}",
+                                              style: const TextStyle(
+                                                  height: 1.2,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ],
                                         ),
-                                        Text(
-                                            "country:  ${customer['country']}  ${customer['zipcode']}")
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                    Positioned(
+                                      top: 6,
+                                      right: 10,
+                                      child: customer['default'] == true
+                                          ? IconButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              icon: const Icon(
+                                                Icons.home,
+                                                color: Colors.deepOrange,
+                                              ),
+                                            )
+                                          : const SizedBox(),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -155,9 +181,10 @@ class _AddressBookState extends State<AddressBook> {
                         });
                   })),
           TealButton(
-            width: 0.7,
+            width: 0.8,
             name: 'Add New Address',
             txtColor: Colors.white,
+            fontSize: 12,
             press: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const AddAddress()));

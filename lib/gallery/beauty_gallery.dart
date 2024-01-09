@@ -39,7 +39,7 @@ class _BeautyGalleryState extends State<BeautyGallery> {
         if (snapshot.data!.docs.isEmpty) {
           return Center(
             child: Text(
-              'This category \n\n has no items yet !',
+              'This category\nhas no items yet !',
               textAlign: TextAlign.center,
               style: GoogleFonts.acme(
                 color: Colors.blueGrey,

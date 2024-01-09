@@ -18,7 +18,7 @@ class MyAlertDialog {
                 CupertinoDialogAction(
                   onPressed: tabNo,
                   child: const Text(
-                    'No',
+                    'Cancel',
                     style: TextStyle(color: Colors.green),
                   ),
                 ),
